@@ -1,0 +1,282 @@
+<style>
+    .login-div{
+        margin:0;
+        color:#6a6f8c;
+        font:600 16px/18px 'Open Sans',sans-serif;
+    }
+    /**,:after,:before{box-sizing:border-box}*/
+    /*.clearfix:after,.clearfix:before{content:'';display:table}*/
+    /*.clearfix:after{clear:both;display:block}*/
+    /*a{color:inherit;text-decoration:none}*/
+
+    .login-wrap{
+        width:100%;
+        margin:auto;
+        max-width:525px;
+        min-height:820px;
+        position:relative;
+        background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+        box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+    }
+    .login-html{
+        width:100%;
+        height:100%;
+        position:absolute;
+        padding:60px 70px 50px 70px;
+        background:rgba(40,57,101,.9);
+    }
+    .login-html .sign-in-htm,
+    .login-html .sign-up-htm{
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        position:absolute;
+        transform:rotateY(180deg);
+        backface-visibility:hidden;
+        transition:all .4s linear;
+    }
+    .login-html .sign-in,
+    .login-html .sign-up,
+    .login-form .group .check{
+        display:none;
+    }
+    .login-html .tab,
+    .login-form .group .label,
+    .login-form .group .button{
+        text-transform:uppercase;
+    }
+    .login-html .tab{
+        font-size:22px;
+        margin-right:15px;
+        padding-bottom:5px;
+        margin:0 15px 10px 0;
+        display:inline-block;
+        border-bottom:2px solid transparent;
+    }
+    .login-html .sign-in:checked + .tab,
+    .login-html .sign-up:checked + .tab{
+        color:#fff;
+        border-color:#1161ee;
+    }
+    .login-form{
+        min-height:345px;
+        position:relative;
+        perspective:1000px;
+        transform-style:preserve-3d;
+    }
+    .login-form .group{
+        margin-bottom:15px;
+    }
+    .login-form .group .label,
+    .login-form .group .input,
+    .login-form .group .button{
+        width:100%;
+        color:#fff;
+        display:block;
+    }
+    .login-form .group .input,
+    .login-form .group .button{
+        border:none;
+        padding:15px 20px !important;
+        border-radius:25px;
+        background:rgba(255,255,255,.1);
+    }
+    .login-form .group input[data-type="password"]{
+        text-security:circle;
+        -webkit-text-security:circle;
+    }
+    .login-form .group .label{
+        color:#aaa;
+        font-size:12px;
+    }
+    .login-form .group .button{
+        background:#1161ee;
+    }
+    .login-form .group label .icon{
+        width:15px;
+        height:15px;
+        border-radius:2px;
+        position:relative;
+        display:inline-block;
+        background:rgba(255,255,255,.1);
+    }
+    .login-form .group label .icon:before,
+    .login-form .group label .icon:after{
+        content:'';
+        width:10px;
+        height:2px;
+        background:#fff;
+        position:absolute;
+        transition:all .2s ease-in-out 0s;
+    }
+    .login-form .group label .icon:before{
+        left:3px;
+        width:5px;
+        bottom:6px;
+        transform:scale(0) rotate(0);
+    }
+    .login-form .group label .icon:after{
+        top:6px;
+        right:0;
+        transform:scale(0) rotate(0);
+    }
+    .login-form .group .check:checked + label{
+        color:#fff;
+    }
+    .login-form .group .check:checked + label .icon{
+        background:#1161ee;
+    }
+    .login-form .group .check:checked + label .icon:before{
+        transform:scale(1) rotate(45deg);
+    }
+    .login-form .group .check:checked + label .icon:after{
+        transform:scale(1) rotate(-45deg);
+    }
+    .login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+        transform:rotate(0);
+    }
+    .login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+        transform:rotate(0);
+    }
+
+    .login-div .hr{
+        height:2px;
+        margin:60px 0 50px 0;
+        background:rgba(255,255,255,.2);
+    }
+    .login-div .foot-lnk{
+        text-align:center;
+    }
+</style>
+
+<div class="login-div">
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">로그인</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">회원가입</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <form id="login_form">
+                        <div class="group">
+                            <label class="label">이메일</label>
+                            <input name="email" type="text" class="input">
+                        </div>
+                        <div class="group">
+                            <label class="label">비밀번호</label>
+                            <input name="password" type="password" class="input" data-type="password">
+                        </div>
+                        <!--<div class="group">-->
+                        <!--<input id="check" type="checkbox" class="check" checked>-->
+                        <!--<label for="check"><span class="icon"></span> Keep me Signed in</label>-->
+                        <!--</div>-->
+                    </form>
+                    <div class="group">
+                        <input id="login_btn" type="submit" class="button" value="로그인">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <!--<a href="#forgot">Forgot Password?</a>-->
+                    </div>
+                </div>
+                <div class="sign-up-htm">
+                    <form  id="sign_up_form" >
+                        <div class="group">
+                            <label class="label">이메일</label>
+                            <input name="email" type="text" class="input">
+                        </div>
+                        <div class="group">
+                            <label class="label">비밀번호</label>
+                            <input name="password" type="password" class="input" data-type="password">
+                        </div>
+                        <div class="group">
+                            <label class="label">이름</label>
+                            <input name="username" type="text" class="input">
+                        </div>
+                        <!--<div class="group">-->
+                        <!--<label for="pass" class="label">Repeat Password</label>-->
+                        <!--<input id="pass" type="password" class="input" data-type="password">-->
+                        <!--</div>-->
+                        <div class="group">
+                            <label class="label">전화번호</label>
+                            <input name="phone" type="text" class="input">
+                        </div>
+                        <div class="group">
+                            <label class="label">생년월일</label>
+                            <input name="birth" type="date" class="input">
+                        </div>
+
+                        <!--<div class="group">-->
+                            <!--<label class="label">우편번호</label>-->
+                            <!--<input class="input" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="background: mediumslateblue"><br>-->
+                            <!--<input name="address" class="input" type="text" id="sample4_roadAddress" placeholder="도로명주소">-->
+                            <!--&lt;!&ndash;<input type="text" id="sample4_jibunAddress" placeholder="지번주소">&ndash;&gt;-->
+                            <!--<span id="guide" style="color:#999"></span>-->
+                        <!--</div>-->
+
+                        <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+                        <script>
+                            //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+                            function sample4_execDaumPostcode() {
+                                new daum.Postcode({
+                                    oncomplete: function(data) {
+                                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                                        // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+                                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                                        var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+                                        var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+                                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                            extraRoadAddr += data.bname;
+                                        }
+                                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                                            extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                                        }
+                                        // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                                        if(extraRoadAddr !== ''){
+                                            extraRoadAddr = ' (' + extraRoadAddr + ')';
+                                        }
+                                        // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+                                        if(fullRoadAddr !== ''){
+                                            fullRoadAddr += extraRoadAddr;
+                                        }
+
+                                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                                        document.getElementById('sample4_roadAddress').value = fullRoadAddr;
+//                                        document.getElementById('sample4_jibunAddress').value = data.jibunAddress;
+
+                                        // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                                        if(data.autoRoadAddress) {
+                                            //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                                            var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                                            document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+
+                                        } else if(data.autoJibunAddress) {
+                                            var expJibunAddr = data.autoJibunAddress;
+                                            document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+
+                                        } else {
+                                            document.getElementById('guide').innerHTML = '';
+                                        }
+                                    }
+                                }).open();
+                            }
+                        </script>
+
+                        <!--<div class="hr"></div>-->
+                        <!--<div class="foot-lnk">-->
+                        <!--<label for="tab-1">Already Member?</a>-->
+                        <!--</div>-->
+                    </form>
+                    <div class="group">
+                        <input id="sign_up_btn" type="submit" class="button" value="회원가입">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

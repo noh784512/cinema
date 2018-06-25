@@ -1,0 +1,637 @@
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EACCES 0.0.0.0:80
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at Server.setupListenHandle [as _listen2] (net.js:1350:19)
+    at listenInCluster (net.js:1408:12)
+    at Server.listen (net.js:1492:7)
+    at Function.listen (/home/ubuntu/movie_project/node_modules/express/lib/application.js:617:24)
+    at Object.<anonymous> (/home/ubuntu/movie_project/server.js:47:18)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EACCES 0.0.0.0:80
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at Server.setupListenHandle [as _listen2] (net.js:1350:19)
+    at listenInCluster (net.js:1408:12)
+    at Server.listen (net.js:1492:7)
+    at Function.listen (/home/ubuntu/movie_project/node_modules/express/lib/application.js:617:24)
+    at Object.<anonymous> (/home/ubuntu/movie_project/server.js:47:18)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EACCES 0.0.0.0:80
+    at Object._errnoException (util.js:1022:11)
+    at _exceptionWithHostPort (util.js:1044:20)
+    at Server.setupListenHandle [as _listen2] (net.js:1350:19)
+    at listenInCluster (net.js:1408:12)
+    at Server.listen (net.js:1492:7)
+    at Function.listen (/home/ubuntu/movie_project/node_modules/express/lib/application.js:617:24)
+    at Object.<anonymous> (/home/ubuntu/movie_project/server.js:47:18)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+Express server has started on port 80
+ SELECT DISTINCT MOVIE.MOVIE_CD, MOVIE.MOVIE_TITLE, MOVIE.IMAGE_URL, MOVIE.RUNNING_TIME
+                            FROM MOVIE, SCREENING_SCHEDULE 
+                            WHERE to_char(SCREENING_SCHEDULE.SCREENING_DATE , 'yyyy-mm-dd') >= to_char(sysdate , 'yyyy-mm-dd')
+                              AND SCREENING_SCHEDULE.MOVIE_CD = MOVIE.MOVIE_CD
+                            
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'MOVIE_CD' },
+     { name: 'MOVIE_TITLE' },
+     { name: 'IMAGE_URL' },
+     { name: 'RUNNING_TIME' } ],
+  rows: 
+   [ [ 46,
+       '데드풀 2',
+       '20180530-025945-7442018041117053012985-540x773.jpg',
+       100 ],
+     [ 44,
+       '베테랑',
+       '20180529-171450-1692015070114303214579-540x752.png',
+       95 ],
+     [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+     [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+     [ 50,
+       '어벤져스 인피니티 워',
+       '20180530-030945-535movie_image (2).jpg',
+       102 ],
+     [ 48,
+       '피터 래빗',
+       '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+       98 ] ] }
+[ { name: 'MOVIE_CD' },
+  { name: 'MOVIE_TITLE' },
+  { name: 'IMAGE_URL' },
+  { name: 'RUNNING_TIME' } ]
+[ [ 46,
+    '데드풀 2',
+    '20180530-025945-7442018041117053012985-540x773.jpg',
+    100 ],
+  [ 44,
+    '베테랑',
+    '20180529-171450-1692015070114303214579-540x752.png',
+    95 ],
+  [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+  [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+  [ 50,
+    '어벤져스 인피니티 워',
+    '20180530-030945-535movie_image (2).jpg',
+    102 ],
+  [ 48,
+    '피터 래빗',
+    '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+    98 ] ]
+46,데드풀 2,20180530-025945-7442018041117053012985-540x773.jpg,100,44,베테랑,20180529-171450-1692015070114303214579-540x752.png,95,45,말할 수 없는 비밀,20180530-025712-964movie_image.jpg,70,43,인터스텔라,20180529-164421-261인터스텔라.jpg,120,50,어벤져스 인피니티 워,20180530-030945-535movie_image (2).jpg,102,48,피터 래빗,20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg,98
+ 
+                            SELECT CONSULTING_CD, CONSULTING_TITLE, CONSULTING_DATE, MEM_ID
+                            FROM CONSULTING
+                            
+[]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'CONSULTING_CD' },
+     { name: 'CONSULTING_TITLE' },
+     { name: 'CONSULTING_DATE' },
+     { name: 'MEM_ID' } ],
+  rows: 
+   [ [ 9, 'adfasfioa', 2018-06-07T00:00:00.000Z, 'a@a.com' ],
+     [ 10, 'asdmfpsdf', 2018-06-07T00:00:00.000Z, 'a@a.com' ] ] }
+[ { name: 'CONSULTING_CD' },
+  { name: 'CONSULTING_TITLE' },
+  { name: 'CONSULTING_DATE' },
+  { name: 'MEM_ID' } ]
+[ [ 9, 'adfasfioa', 2018-06-07T00:00:00.000Z, 'a@a.com' ],
+  [ 10, 'asdmfpsdf', 2018-06-07T00:00:00.000Z, 'a@a.com' ] ]
+9,adfasfioa,Thu Jun 07 2018 00:00:00 GMT+0000 (UTC),a@a.com,10,asdmfpsdf,Thu Jun 07 2018 00:00:00 GMT+0000 (UTC),a@a.com
+ SELECT MEM_SALT
+                            FROM MEMBER
+                            WHERE MEM_ID = :email
+[ 'a@a.com' ]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: [ { name: 'MEM_SALT' } ],
+  rows: 
+   [ [ 'ifnld+g5+LYCY2BTE7dXodKHFtzKhyVd1M9Yd9fAt8UiWDouaE98Iw4uND4zQ03bM/dwqrD+eddx8rwGL7xfdw==' ] ] }
+[ { name: 'MEM_SALT' } ]
+[ [ 'ifnld+g5+LYCY2BTE7dXodKHFtzKhyVd1M9Yd9fAt8UiWDouaE98Iw4uND4zQ03bM/dwqrD+eddx8rwGL7xfdw==' ] ]
+ifnld+g5+LYCY2BTE7dXodKHFtzKhyVd1M9Yd9fAt8UiWDouaE98Iw4uND4zQ03bM/dwqrD+eddx8rwGL7xfdw==
+ SELECT COUNT(*)
+                                    FROM MEMBER
+                                    WHERE MEM_ID = :email 
+                                      and MEM_PASSWD = :password
+                                    
+[ 'a@a.com',
+  '6dpRkHsD5FMr/HiTX2Dk4Fls14c/eCiU/F+IRe7viqlGjKQOcl1q28GRUBLLakP56xh/4xOKBCX668vbCshWyAxHLnRcz9OpKB75ruVqM9RU24tAGubV8lpdEYLKu+vAANZsYbu1U46+RV5P2ifI32gVHKYYW2ufVgS+rpp1raY=' ]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: [ { name: 'COUNT(*)' } ],
+  rows: [ [ 1 ] ] }
+[ { name: 'COUNT(*)' } ]
+[ [ 1 ] ]
+로그인 성공!
+ SELECT DISTINCT MOVIE.MOVIE_CD, MOVIE.MOVIE_TITLE, MOVIE.IMAGE_URL, MOVIE.RUNNING_TIME
+                            FROM MOVIE, SCREENING_SCHEDULE 
+                            WHERE to_char(SCREENING_SCHEDULE.SCREENING_DATE , 'yyyy-mm-dd') >= to_char(sysdate , 'yyyy-mm-dd')
+                              AND SCREENING_SCHEDULE.MOVIE_CD = MOVIE.MOVIE_CD
+                            
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'MOVIE_CD' },
+     { name: 'MOVIE_TITLE' },
+     { name: 'IMAGE_URL' },
+     { name: 'RUNNING_TIME' } ],
+  rows: 
+   [ [ 46,
+       '데드풀 2',
+       '20180530-025945-7442018041117053012985-540x773.jpg',
+       100 ],
+     [ 44,
+       '베테랑',
+       '20180529-171450-1692015070114303214579-540x752.png',
+       95 ],
+     [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+     [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+     [ 50,
+       '어벤져스 인피니티 워',
+       '20180530-030945-535movie_image (2).jpg',
+       102 ],
+     [ 48,
+       '피터 래빗',
+       '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+       98 ] ] }
+[ { name: 'MOVIE_CD' },
+  { name: 'MOVIE_TITLE' },
+  { name: 'IMAGE_URL' },
+  { name: 'RUNNING_TIME' } ]
+[ [ 46,
+    '데드풀 2',
+    '20180530-025945-7442018041117053012985-540x773.jpg',
+    100 ],
+  [ 44,
+    '베테랑',
+    '20180529-171450-1692015070114303214579-540x752.png',
+    95 ],
+  [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+  [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+  [ 50,
+    '어벤져스 인피니티 워',
+    '20180530-030945-535movie_image (2).jpg',
+    102 ],
+  [ 48,
+    '피터 래빗',
+    '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+    98 ] ]
+46,데드풀 2,20180530-025945-7442018041117053012985-540x773.jpg,100,44,베테랑,20180529-171450-1692015070114303214579-540x752.png,95,45,말할 수 없는 비밀,20180530-025712-964movie_image.jpg,70,43,인터스텔라,20180529-164421-261인터스텔라.jpg,120,50,어벤져스 인피니티 워,20180530-030945-535movie_image (2).jpg,102,48,피터 래빗,20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg,98
+ 
+                                SELECT CINEMA_NAME
+                                FROM CINEMA
+                                
+[]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: [ { name: 'CINEMA_NAME' } ],
+  rows: [ [ '영등마' ], [ '청량리' ] ] }
+[ { name: 'CINEMA_NAME' } ]
+[ [ '영등마' ], [ '청량리' ] ]
+영등마,청량리
+ReferenceError: /home/ubuntu/movie_project/views/header.ejs:35
+    33|                     <!--</li>-->
+    34|                     <!--<li><a href="#">Veroeros feugiat</a></li>-->
+ >> 35|                 <!--</ul>-->
+    36|             <!--</li>-->
+    37|             <li><a href="booking">예매</a></li>
+    38|             <li><a href="">영화</a></li>
+
+movie_arr is not defined
+    at eval (eval at compile (/home/ubuntu/movie_project/node_modules/ejs/lib/ejs.js:485:12), <anonymous>:39:53)
+    at returnedFn (/home/ubuntu/movie_project/node_modules/ejs/lib/ejs.js:514:17)
+    at View.exports.renderFile [as engine] (/home/ubuntu/movie_project/node_modules/ejs/lib/ejs.js:358:31)
+    at View.render (/home/ubuntu/movie_project/node_modules/express/lib/view.js:126:8)
+    at tryRender (/home/ubuntu/movie_project/node_modules/express/lib/application.js:639:10)
+    at Function.render (/home/ubuntu/movie_project/node_modules/express/lib/application.js:591:3)
+    at ServerResponse.render (/home/ubuntu/movie_project/node_modules/express/lib/response.js:961:7)
+    at query_end_callback (/home/ubuntu/movie_project/router/main.js:587:29)
+    at /home/ubuntu/movie_project/db_connect/db_connect.js:43:29
+    at fetchRowsCb (/home/ubuntu/movie_project/node_modules/oracledb/lib/connection.js:105:7)
+ SELECT DISTINCT MOVIE.MOVIE_CD, MOVIE.MOVIE_TITLE, MOVIE.IMAGE_URL, MOVIE.RUNNING_TIME
+                            FROM MOVIE, SCREENING_SCHEDULE 
+                            WHERE to_char(SCREENING_SCHEDULE.SCREENING_DATE , 'yyyy-mm-dd') >= to_char(sysdate , 'yyyy-mm-dd')
+                              AND SCREENING_SCHEDULE.MOVIE_CD = MOVIE.MOVIE_CD
+                            
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'MOVIE_CD' },
+     { name: 'MOVIE_TITLE' },
+     { name: 'IMAGE_URL' },
+     { name: 'RUNNING_TIME' } ],
+  rows: 
+   [ [ 46,
+       '데드풀 2',
+       '20180530-025945-7442018041117053012985-540x773.jpg',
+       100 ],
+     [ 44,
+       '베테랑',
+       '20180529-171450-1692015070114303214579-540x752.png',
+       95 ],
+     [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+     [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+     [ 50,
+       '어벤져스 인피니티 워',
+       '20180530-030945-535movie_image (2).jpg',
+       102 ],
+     [ 48,
+       '피터 래빗',
+       '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+       98 ] ] }
+[ { name: 'MOVIE_CD' },
+  { name: 'MOVIE_TITLE' },
+  { name: 'IMAGE_URL' },
+  { name: 'RUNNING_TIME' } ]
+[ [ 46,
+    '데드풀 2',
+    '20180530-025945-7442018041117053012985-540x773.jpg',
+    100 ],
+  [ 44,
+    '베테랑',
+    '20180529-171450-1692015070114303214579-540x752.png',
+    95 ],
+  [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+  [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+  [ 50,
+    '어벤져스 인피니티 워',
+    '20180530-030945-535movie_image (2).jpg',
+    102 ],
+  [ 48,
+    '피터 래빗',
+    '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+    98 ] ]
+46,데드풀 2,20180530-025945-7442018041117053012985-540x773.jpg,100,44,베테랑,20180529-171450-1692015070114303214579-540x752.png,95,45,말할 수 없는 비밀,20180530-025712-964movie_image.jpg,70,43,인터스텔라,20180529-164421-261인터스텔라.jpg,120,50,어벤져스 인피니티 워,20180530-030945-535movie_image (2).jpg,102,48,피터 래빗,20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg,98
+로그인 되지 않았습니다!
+ SELECT ADMIN_SALT
+                            FROM ADMINISTRATOR
+                            WHERE ADMIN_ID = :email
+[ 'cutecjh33@naver.com' ]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: [ { name: 'ADMIN_SALT' } ],
+  rows: 
+   [ [ 'YAzzB5h0mnmyJaYkegribYexJ6bhlCZGDL+XAhgQ/HPbfbXjBkZc7d/0fL3aFTwTtnkEV8DBiMMdWwhw4iBtTg==' ] ] }
+[ { name: 'ADMIN_SALT' } ]
+[ [ 'YAzzB5h0mnmyJaYkegribYexJ6bhlCZGDL+XAhgQ/HPbfbXjBkZc7d/0fL3aFTwTtnkEV8DBiMMdWwhw4iBtTg==' ] ]
+YAzzB5h0mnmyJaYkegribYexJ6bhlCZGDL+XAhgQ/HPbfbXjBkZc7d/0fL3aFTwTtnkEV8DBiMMdWwhw4iBtTg==
+ SELECT COUNT(*)
+                                    FROM ADMINISTRATOR
+                                    WHERE ADMIN_ID = :email 
+                                      and ADMIN_PASSWD = :password
+                                    
+[ 'cutecjh33@naver.com',
+  '5GL7YXaZXMBId+nQKnXjK0u759wzBF2369n+Eta47DSVm86SiVBXltv6pI/1/gvLZ9/holDeDVISHuAXFSyqdfGDUyFQ6g23LNAHdtBw9jM9417RH5eU1VeBrXRAZloCp61wlUm1Wh/RnM6cESZohD1T239ayauE9JW2xOHdYnM=' ]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: [ { name: 'COUNT(*)' } ],
+  rows: [ [ 1 ] ] }
+[ { name: 'COUNT(*)' } ]
+[ [ 1 ] ]
+로그인 성공!
+ SELECT CINEMA_CD, CINEMA_NAME, PARKING_INFO, CINEMA_PHONE
+                            FROM CINEMA
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'CINEMA_CD' },
+     { name: 'CINEMA_NAME' },
+     { name: 'PARKING_INFO' },
+     { name: 'CINEMA_PHONE' } ],
+  rows: 
+   [ [ 1, '영등마', '주차 가능', '0234302323' ],
+     [ 2, '청량리', '주차 가능', '023203948' ] ] }
+[ { name: 'CINEMA_CD' },
+  { name: 'CINEMA_NAME' },
+  { name: 'PARKING_INFO' },
+  { name: 'CINEMA_PHONE' } ]
+[ [ 1, '영등마', '주차 가능', '0234302323' ],
+  [ 2, '청량리', '주차 가능', '023203948' ] ]
+1,영등마,주차 가능,0234302323,2,청량리,주차 가능,023203948
+ SELECT THEATER.THEATER_CD, THEATER.THEATER_NO, THEATER.THEATER_TYPE
+                            FROM THEATER 
+                            WHERE   THEATER.CINEMA_CD = :cinema_list  
+                            
+[ '1' ]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'THEATER_CD' },
+     { name: 'THEATER_NO' },
+     { name: 'THEATER_TYPE' } ],
+  rows: 
+   [ [ 7, 4, '3d' ],
+     [ 1, 1, 'IMAX' ],
+     [ 2, 2, '2D' ],
+     [ 3, 3, '3D' ],
+     [ 6, 5, '3d' ] ] }
+[ { name: 'THEATER_CD' },
+  { name: 'THEATER_NO' },
+  { name: 'THEATER_TYPE' } ]
+[ [ 7, 4, '3d' ],
+  [ 1, 1, 'IMAX' ],
+  [ 2, 2, '2D' ],
+  [ 3, 3, '3D' ],
+  [ 6, 5, '3d' ] ]
+7,4,3d,1,1,IMAX,2,2,2D,3,3,3D,6,5,3d
+ SELECT CINEMA_CD, CINEMA_NAME, CINEMA_LOCATION, PARKING_INFO, CINEMA_PHONE
+                            FROM CINEMA
+                            
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'CINEMA_CD' },
+     { name: 'CINEMA_NAME' },
+     { name: 'CINEMA_LOCATION' },
+     { name: 'PARKING_INFO' },
+     { name: 'CINEMA_PHONE' } ],
+  rows: 
+   [ [ 1, '영등마', '강서구 영등포로', '주차 가능', '0234302323' ],
+     [ 2, '청량리', '청량리 회기옆', '주차 가능', '023203948' ] ] }
+[ { name: 'CINEMA_CD' },
+  { name: 'CINEMA_NAME' },
+  { name: 'CINEMA_LOCATION' },
+  { name: 'PARKING_INFO' },
+  { name: 'CINEMA_PHONE' } ]
+[ [ 1, '영등마', '강서구 영등포로', '주차 가능', '0234302323' ],
+  [ 2, '청량리', '청량리 회기옆', '주차 가능', '023203948' ] ]
+1,영등마,강서구 영등포로,주차 가능,0234302323,2,청량리,청량리 회기옆,주차 가능,023203948
+ 
+                            SELECT CONSULTING_CD, CONSULTING_TITLE, CONSULTING_DATE, MEM_ID
+                            FROM CONSULTING
+                            UNION
+                            SELECT CONSULTING_CD, ANS_TITLE, ANS_DATE, ADMIN_ID
+                            FROM ANSWER
+                            ORDER BY CONSULTING_CD
+                          
+[]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'CONSULTING_CD' },
+     { name: 'CONSULTING_TITLE' },
+     { name: 'CONSULTING_DATE' },
+     { name: 'MEM_ID' } ],
+  rows: 
+   [ [ 9, 'adfasfioa', 2018-06-07T00:00:00.000Z, 'a@a.com' ],
+     [ 9, '답변달디', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ],
+     [ 10, 'asdmfpsdf', 2018-06-07T00:00:00.000Z, 'a@a.com' ] ] }
+[ { name: 'CONSULTING_CD' },
+  { name: 'CONSULTING_TITLE' },
+  { name: 'CONSULTING_DATE' },
+  { name: 'MEM_ID' } ]
+[ [ 9, 'adfasfioa', 2018-06-07T00:00:00.000Z, 'a@a.com' ],
+  [ 9, '답변달디', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ],
+  [ 10, 'asdmfpsdf', 2018-06-07T00:00:00.000Z, 'a@a.com' ] ]
+9,adfasfioa,Thu Jun 07 2018 00:00:00 GMT+0000 (UTC),a@a.com,9,답변달디,Fri Jun 08 2018 00:00:00 GMT+0000 (UTC),noh784512@naver.com,10,asdmfpsdf,Thu Jun 07 2018 00:00:00 GMT+0000 (UTC),a@a.com
+로그아웃 되었습니다!
+ SELECT BULLETIN_CD, BULLETIN_TITLE, REGIST_DATE, ADMIN_ID 
+                            FROM BULLETIN
+                            WHERE BULLETIN_TYPE_CD=1
+                            
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'BULLETIN_CD' },
+     { name: 'BULLETIN_TITLE' },
+     { name: 'REGIST_DATE' },
+     { name: 'ADMIN_ID' } ],
+  rows: 
+   [ [ 2, '두번쨰 규칙', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ],
+     [ 3, '세번쨰 규칙', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ],
+     [ 4, '네번째 규칙', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ],
+     [ 1,
+       '영화관 이용규칙ㅈㅂㄷㅂ',
+       2018-06-08T00:00:00.000Z,
+       'noh784512@naver.com' ],
+     [ 5, 'ㄷ', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ] ] }
+[ { name: 'BULLETIN_CD' },
+  { name: 'BULLETIN_TITLE' },
+  { name: 'REGIST_DATE' },
+  { name: 'ADMIN_ID' } ]
+[ [ 2, '두번쨰 규칙', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ],
+  [ 3, '세번쨰 규칙', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ],
+  [ 4, '네번째 규칙', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ],
+  [ 1,
+    '영화관 이용규칙ㅈㅂㄷㅂ',
+    2018-06-08T00:00:00.000Z,
+    'noh784512@naver.com' ],
+  [ 5, 'ㄷ', 2018-06-08T00:00:00.000Z, 'noh784512@naver.com' ] ]
+2,두번쨰 규칙,Fri Jun 08 2018 00:00:00 GMT+0000 (UTC),noh784512@naver.com,3,세번쨰 규칙,Fri Jun 08 2018 00:00:00 GMT+0000 (UTC),noh784512@naver.com,4,네번째 규칙,Fri Jun 08 2018 00:00:00 GMT+0000 (UTC),noh784512@naver.com,1,영화관 이용규칙ㅈㅂㄷㅂ,Fri Jun 08 2018 00:00:00 GMT+0000 (UTC),noh784512@naver.com,5,ㄷ,Fri Jun 08 2018 00:00:00 GMT+0000 (UTC),noh784512@naver.com
+ 
+                            SELECT BULLETIN_TITLE, BULLETIN_CONTENTS, REGIST_DATE
+                            FROM BULLETIN
+                            WHERE BULLETIN_CD=:bulletin_cd
+                            
+[ '2' ]
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'BULLETIN_TITLE' },
+     { name: 'BULLETIN_CONTENTS' },
+     { name: 'REGIST_DATE' } ],
+  rows: 
+   [ [ '두번쨰 규칙',
+       '<p>ㅔ둑댜ㅔㅈㅂ뤱ㄼ&nbsp;&nbsp;&nbsp;&nbsp;</p>',
+       2018-06-08T00:00:00.000Z ] ] }
+[ { name: 'BULLETIN_TITLE' },
+  { name: 'BULLETIN_CONTENTS' },
+  { name: 'REGIST_DATE' } ]
+[ [ '두번쨰 규칙',
+    '<p>ㅔ둑댜ㅔㅈㅂ뤱ㄼ&nbsp;&nbsp;&nbsp;&nbsp;</p>',
+    2018-06-08T00:00:00.000Z ] ]
+두번쨰 규칙,<p>ㅔ둑댜ㅔㅈㅂ뤱ㄼ&nbsp;&nbsp;&nbsp;&nbsp;</p>,Fri Jun 08 2018 00:00:00 GMT+0000 (UTC)
+ SELECT DISTINCT MOVIE.MOVIE_CD, MOVIE.MOVIE_TITLE, MOVIE.IMAGE_URL, MOVIE.RUNNING_TIME
+                            FROM MOVIE, SCREENING_SCHEDULE 
+                            WHERE to_char(SCREENING_SCHEDULE.SCREENING_DATE , 'yyyy-mm-dd') >= to_char(sysdate , 'yyyy-mm-dd')
+                              AND SCREENING_SCHEDULE.MOVIE_CD = MOVIE.MOVIE_CD
+                            
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'MOVIE_CD' },
+     { name: 'MOVIE_TITLE' },
+     { name: 'IMAGE_URL' },
+     { name: 'RUNNING_TIME' } ],
+  rows: 
+   [ [ 46,
+       '데드풀 2',
+       '20180530-025945-7442018041117053012985-540x773.jpg',
+       100 ],
+     [ 44,
+       '베테랑',
+       '20180529-171450-1692015070114303214579-540x752.png',
+       95 ],
+     [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+     [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+     [ 50,
+       '어벤져스 인피니티 워',
+       '20180530-030945-535movie_image (2).jpg',
+       102 ],
+     [ 48,
+       '피터 래빗',
+       '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+       98 ] ] }
+[ { name: 'MOVIE_CD' },
+  { name: 'MOVIE_TITLE' },
+  { name: 'IMAGE_URL' },
+  { name: 'RUNNING_TIME' } ]
+[ [ 46,
+    '데드풀 2',
+    '20180530-025945-7442018041117053012985-540x773.jpg',
+    100 ],
+  [ 44,
+    '베테랑',
+    '20180529-171450-1692015070114303214579-540x752.png',
+    95 ],
+  [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+  [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+  [ 50,
+    '어벤져스 인피니티 워',
+    '20180530-030945-535movie_image (2).jpg',
+    102 ],
+  [ 48,
+    '피터 래빗',
+    '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+    98 ] ]
+46,데드풀 2,20180530-025945-7442018041117053012985-540x773.jpg,100,44,베테랑,20180529-171450-1692015070114303214579-540x752.png,95,45,말할 수 없는 비밀,20180530-025712-964movie_image.jpg,70,43,인터스텔라,20180529-164421-261인터스텔라.jpg,120,50,어벤져스 인피니티 워,20180530-030945-535movie_image (2).jpg,102,48,피터 래빗,20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg,98
+ SELECT DISTINCT MOVIE.MOVIE_CD, MOVIE.MOVIE_TITLE, MOVIE.IMAGE_URL, MOVIE.RUNNING_TIME
+                            FROM MOVIE, SCREENING_SCHEDULE 
+                            WHERE to_char(SCREENING_SCHEDULE.SCREENING_DATE , 'yyyy-mm-dd') >= to_char(sysdate , 'yyyy-mm-dd')
+                              AND SCREENING_SCHEDULE.MOVIE_CD = MOVIE.MOVIE_CD
+                            
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'MOVIE_CD' },
+     { name: 'MOVIE_TITLE' },
+     { name: 'IMAGE_URL' },
+     { name: 'RUNNING_TIME' } ],
+  rows: 
+   [ [ 46,
+       '데드풀 2',
+       '20180530-025945-7442018041117053012985-540x773.jpg',
+       100 ],
+     [ 44,
+       '베테랑',
+       '20180529-171450-1692015070114303214579-540x752.png',
+       95 ],
+     [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+     [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+     [ 50,
+       '어벤져스 인피니티 워',
+       '20180530-030945-535movie_image (2).jpg',
+       102 ],
+     [ 48,
+       '피터 래빗',
+       '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+       98 ] ] }
+[ { name: 'MOVIE_CD' },
+  { name: 'MOVIE_TITLE' },
+  { name: 'IMAGE_URL' },
+  { name: 'RUNNING_TIME' } ]
+[ [ 46,
+    '데드풀 2',
+    '20180530-025945-7442018041117053012985-540x773.jpg',
+    100 ],
+  [ 44,
+    '베테랑',
+    '20180529-171450-1692015070114303214579-540x752.png',
+    95 ],
+  [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+  [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+  [ 50,
+    '어벤져스 인피니티 워',
+    '20180530-030945-535movie_image (2).jpg',
+    102 ],
+  [ 48,
+    '피터 래빗',
+    '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+    98 ] ]
+46,데드풀 2,20180530-025945-7442018041117053012985-540x773.jpg,100,44,베테랑,20180529-171450-1692015070114303214579-540x752.png,95,45,말할 수 없는 비밀,20180530-025712-964movie_image.jpg,70,43,인터스텔라,20180529-164421-261인터스텔라.jpg,120,50,어벤져스 인피니티 워,20180530-030945-535movie_image (2).jpg,102,48,피터 래빗,20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg,98
+ SELECT DISTINCT MOVIE.MOVIE_CD, MOVIE.MOVIE_TITLE, MOVIE.IMAGE_URL, MOVIE.RUNNING_TIME
+                            FROM MOVIE, SCREENING_SCHEDULE 
+                            WHERE to_char(SCREENING_SCHEDULE.SCREENING_DATE , 'yyyy-mm-dd') >= to_char(sysdate , 'yyyy-mm-dd')
+                              AND SCREENING_SCHEDULE.MOVIE_CD = MOVIE.MOVIE_CD
+                            
+{}
+{ outBinds: undefined,
+  rowsAffected: undefined,
+  metaData: 
+   [ { name: 'MOVIE_CD' },
+     { name: 'MOVIE_TITLE' },
+     { name: 'IMAGE_URL' },
+     { name: 'RUNNING_TIME' } ],
+  rows: 
+   [ [ 46,
+       '데드풀 2',
+       '20180530-025945-7442018041117053012985-540x773.jpg',
+       100 ],
+     [ 44,
+       '베테랑',
+       '20180529-171450-1692015070114303214579-540x752.png',
+       95 ],
+     [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+     [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+     [ 50,
+       '어벤져스 인피니티 워',
+       '20180530-030945-535movie_image (2).jpg',
+       102 ],
+     [ 48,
+       '피터 래빗',
+       '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+       98 ] ] }
+[ { name: 'MOVIE_CD' },
+  { name: 'MOVIE_TITLE' },
+  { name: 'IMAGE_URL' },
+  { name: 'RUNNING_TIME' } ]
+[ [ 46,
+    '데드풀 2',
+    '20180530-025945-7442018041117053012985-540x773.jpg',
+    100 ],
+  [ 44,
+    '베테랑',
+    '20180529-171450-1692015070114303214579-540x752.png',
+    95 ],
+  [ 45, '말할 수 없는 비밀', '20180530-025712-964movie_image.jpg', 70 ],
+  [ 43, '인터스텔라', '20180529-164421-261인터스텔라.jpg', 120 ],
+  [ 50,
+    '어벤져스 인피니티 워',
+    '20180530-030945-535movie_image (2).jpg',
+    102 ],
+  [ 48,
+    '피터 래빗',
+    '20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg',
+    98 ] ]
+46,데드풀 2,20180530-025945-7442018041117053012985-540x773.jpg,100,44,베테랑,20180529-171450-1692015070114303214579-540x752.png,95,45,말할 수 없는 비밀,20180530-025712-964movie_image.jpg,70,43,인터스텔라,20180529-164421-261인터스텔라.jpg,120,50,어벤져스 인피니티 워,20180530-030945-535movie_image (2).jpg,102,48,피터 래빗,20180530-030427-47211514e7eb874ca884cef606123b2330d.jpg,98

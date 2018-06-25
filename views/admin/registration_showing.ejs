@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>영화 등록</title>
+    <% include ../common_import.ejs %>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header_admin.ejs %>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+            <form class="ui form" id="registration_showing_form">
+                <h4 class="ui dividing header">상영 일정 등록</h4>
+
+                <div class="field">
+
+                    <div class="two fields">
+                        <div class="field">
+                            <label>영화 검색</label>
+                            <input type="text" name="search_name" placeholder="제목을 입력해주세요">
+                        </div>
+                        <div class="field">
+                            <br>
+                            <div id="movie_search" class="ui submit button">영화 검색</div>
+                        </div> 
+                    </div>
+
+                    <div class="two fields">
+                        <div class="field">
+                            <label>영화 선택</label>
+                            <select id="movie_list" name="movie_list"  class="ui dropdown">
+                                <option value="">영화 선택</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>영화관 선택</label>
+                            <select id="cinema_list" name="cinema_list" class="ui dropdown">
+                                <option value="">영화관 선택</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>상영관 선택</label>
+                            <select id="theater_list" name="theater_list" class="ui dropdown">
+                                <option value="">상영관 선택</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>상영 일자</label>
+                        <input type="date" name="release_date" class="input">
+                    </div>
+                    <div class="field">
+                        <label>상영 시작 시간</label>
+                        <input type="time" name="running_time" placeholder="상영 시작 시간을 입력해주세요">
+                    </div>
+
+                </div>
+            </form>
+            <br>
+
+            <br>
+
+            <div id="submit_btn" class="ui submit button">Submit</div>
+            <script>
+
+                // 시네마 추가
+                var send_json = {};
+                var answer_data = ajax_using_query( url = '/cinema_search', _sendData = send_json ,
+                    _callback = function(){}, _isAsync = false , _type = 'post');
+
+                $('#cinema_list').html("");
+                for ( var i = 0 ; i < answer_data.rows.length ; i++){
+
+                    $('#cinema_list').append($('<option>', {
+                        value: answer_data.rows[i][0],
+                        text : answer_data.rows[i][1]
+                    }));
+                }
+                change_theater();
+
+                // 변화 감지
+                $( "#cinema_list" ).change(function() {
+                    change_theater();
+                });
+
+
+                // 검색 버튼 누른 후 이벤트
+                $("#movie_search").click(function(){
+                    var send_json = get_form_data_to_json($("#registration_showing_form"));
+                    var answer_data = ajax_using_query( url = '/movie_search', _sendData = send_json ,
+                        _callback = function(){}, _isAsync = false , _type = 'post');
+
+                    $('#movie_list').html("");
+                    for ( var i = 0 ; i < answer_data.rows.length ; i++){
+
+                        $('#movie_list').append($('<option>', {
+                            value: answer_data.rows[i][0],
+                            text : answer_data.rows[i][1] + " ( " + answer_data.rows[i][2].substring() + " )"
+                        }));
+                    }
+
+                    alert(answer_data.rows.length + '개의 영화가 검색되었습니다 ');
+
+                });
+
+                function change_theater(){
+                    var send_json = get_form_data_to_json($("#registration_showing_form"));
+                    var answer_data = ajax_using_query( url = '/theater_search', _sendData = send_json ,
+                        _callback = function(){}, _isAsync = false , _type = 'post');
+
+
+                    $('#theater_list').html("");
+                    for ( var i = 0 ; i < answer_data.rows.length ; i++){
+
+                        $('#theater_list').append($('<option>', {
+                            value: answer_data.rows[i][0],
+                            text : answer_data.rows[i][1] + " ( " + answer_data.rows[i][2] + ")"
+                        }));
+                    }
+                };
+
+
+                $("#submit_btn").click(function(){
+
+                    // 폼 내용 업로드
+                    var send_json = get_form_data_to_json($("#registration_showing_form"));
+
+                    var answer_data = ajax_using_query( url = '/admin/registration_showing', _sendData = send_json ,
+                        _callback = function(){}, _isAsync = false);
+
+                    if(answer_data["status"] == OK){
+                        alert("성공!");
+
+                        
+                    }else{
+                        alert("에러 확인!");
+                        return;
+                    }
+                    location.replace('/admin/manage_showing');
+
+                });
+
+
+            </script>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include ../footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include ../common_footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>회원정보 조회</title>
+    <% include common_import.ejs %>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header.ejs %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+            <form class="ui form" id="update_member_form">
+                <h4 class="ui dividing header">회원정보 조회</h4>
+
+                <div class="field">
+                    <div class="group">
+                        <label class="label" email=<%=result_arr.rows[0][0]%>>이메일</label>
+                        <input name="email" type="text" class="input"  value=<%=result_arr.rows[0][0]%>  disabled>
+                    </div>
+                    <br>
+                    <div class="group">
+                        <label class="label" username="<%=result_arr.rows[0][2]%>">이름</label>
+                        <input name="username" type="text" class="input" value=<%=result_arr.rows[0][2]%> disabled>
+                    </div>
+                    <br>
+                    <div class="group">
+                        <label class="label">전화번호</label>
+                        <input name="phone" type="text" class="input" value=<%=result_arr.rows[0][5]%> disabled>
+                    </div>
+                    <br>
+                    <div class="group">
+                        <label class="label" birth="<%=result_arr.rows[0][4]%>">생년월일</label>
+                        <input name="text" type="text" class="input" value= "<%-result_arr.rows[0][3]%>" disabled>
+                    </div>
+                    <br>
+                    <div class="group">
+                        <label class="label" birth="<%=result_arr.rows[0][4]%>">주소</label>
+                        <input name="text" type="text" class="input" value= "<%-result_arr.rows[0][4]%>" disabled>
+                    </div>
+                </div>
+            </form>
+            <br>
+
+            <div id="submit_btn" class="ui submit button">수정</div>
+
+            <script>
+                $("#submit_btn").click(function(){
+
+                    location.replace('/update_member'); 
+
+
+                });
+  
+
+            </script>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include common_footer.ejs %>
+</body>
+</html>

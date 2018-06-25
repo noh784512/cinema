@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>영화 등록</title>
+    <% include ../common_import.ejs %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header_admin.ejs %>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+            <form class="ui form" id="registration_movie_form">
+                <h4 class="ui dividing header">영화 등록</h4>
+
+                <div class="field">
+                    <div class="two fields">
+                        <div class="field">
+                            <label>영화 제목</label>
+                            <input type="text" name="title" placeholder="제목을 입력해주세요">
+                        </div>
+                        <div class="field">
+                            <label>감독</label>
+                            <input type="text" name="crew" placeholder="감독명을 입력해주세요">
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>출연진</label>
+                            <input type="text" name="cast" placeholder="출연진을 입력해주세요">
+                        </div>
+                        <div class="field">
+                            <label>배급사</label>
+                            <input type="text" name="distributor" placeholder="배급사를 입력해주세요">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>트레일러 영상 iframe</label>
+                        <input type="text" name="trailer" placeholder="트레일러 영상 코드를 입력해주세요">
+                    </div>
+                    <label>줄거리</label>
+                    <div class="field">
+                        <!--<textarea name="synopsis"></textarea>-->
+
+                        <div id="summernote" editor="editor" on-image-upload="imageUpload(files)"></div>
+                        <br>
+                    </div>
+                    <div class="field">
+                        <label>개봉일</label>
+                        <input type="date" name="release_date" class="input">
+                    </div>
+                    <div class="field">
+                        <label>상영시간</label>
+                        <input type="number" name="running_time" placeholder="상영시간을 입력해주세요" number>
+                    </div>
+                    <div class="field">
+                        <label>상영등급</label>
+                        <select id="movie_list" name="rate_code"  class="ui dropdown">
+                            <option value="00">전체이용가</option>
+                            <option value="12">12세이용가</option>
+                            <option value="15">15세이용가</option>
+                            <option value="19">19세이용가</option>
+                        </select>
+                    </div>
+
+
+                    <div class="field">
+                        <label>장르</label>
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="genre_1">
+                            <label>액션</label>
+                        </div>
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="genre_2">
+                            <label>어드벤처</label>
+                        </div>
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="genre_3">
+                            <label>코미디</label>
+                        </div>
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="genre_4">
+                            <label>드라마</label>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+            <br>
+
+            <div class="ui form" >
+                <div class="field">
+                    <label>포스터 사진</label>
+                    <form id="image_form" action="upload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="userfile">
+                    </form>
+                </div>
+            </div>
+            <br>
+
+            <div id="submit_btn" class="ui submit button">Submit</div>
+            <script>
+
+                $("#submit_btn").click(function(){
+                    var img_url = sendFile_poster((($('#image_form input')[0]).files[0]) , '/upload');
+
+                    if ( img_url == null || img_url == undefined) {
+                        alert(img_url);
+                        return;
+                    }
+
+                    // 폼 내용 업로드
+                    var send_json = get_form_data_to_json($("#registration_movie_form"));
+                    send_json['img_url'] = img_url;
+                    send_json['synopsis'] = $('#summernote').summernote('code');
+
+                    var genre_arr = [];
+                    for ( var i = 1 ; i <=4  ; i++ ) if ( $("input[name=genre_"+ i +"]").is(":checked") ) genre_arr.push(i);
+                    send_json["genre_arr"] = genre_arr;
+
+
+                    var answer_data = ajax_using_query( url = '/admin/registration_movie', _sendData = send_json ,
+                        _callback = function(){}, _isAsync = false);
+
+                    if(answer_data["status"] == OK){
+                        alert("성공!");
+                    }else{
+                        alert("에러 확인!");
+                        return;
+                    }
+                    location.replace('/admin/manage_movie');
+
+
+                });
+
+
+                function sendFile_poster(file, url) {
+                    var data = new FormData();
+                    data.append("userfile", file);
+                    var request = new XMLHttpRequest();
+                    request.open('POST', url, false);
+                    request.onerror = function (jqXHR, textStatus, errorThrown) {
+                        // There was a connection error of some sort
+                        console.log(jqXHR);
+                    };
+                    request.send(data);
+
+                    if (request.status >= 200 && request.status < 400) {
+                        // Success!
+                        var resp = request.responseText;
+                        console.log(resp);
+
+                        return resp;
+                    } else {
+                        // We reached our target server, but it returned an error
+                        var resp = request.responseText;
+                        console.log(resp);
+
+                        return undefined;
+                    }
+                }
+
+
+                $('#summernote').summernote({
+                    lang: 'ko-KR',
+                    height: 500,
+                    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'clear']], ['fontname', ['fontname']], ['font', ['strikethrough', 'superscript', 'subscript']], ['fontsize', ['fontsize']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['height', ['height']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'hr']], ['view', ['fullscreen', 'codeview']], ['do', ['undo', 'redo']], ['help', ['help']]],
+                    codemirror: {
+                        lineNumbers: true,
+                        tabSize: 2,
+                        theme: "solarized light"
+                    },
+                    callbacks: {
+                        onImageUpload: function(files, editor, welEditable) {
+                            url = '/upload' //path is defined as data attribute for  textarea
+                            sendFile(files[0], url, $(this));
+                        }
+                    }
+                });
+
+                function sendFile(file, url, editor) {
+                    var data = new FormData();
+                    data.append("userfile", file);
+                    var request = new XMLHttpRequest();
+                    request.open('POST', url, true);
+                    request.onload = function () {
+                        if (request.status >= 200 && request.status < 400) {
+                            // Success!
+                            var resp = request.responseText;
+                            $(editor).summernote('insertImage', '/' + resp);
+                            console.log(resp);
+                        } else {
+                            // We reached our target server, but it returned an error
+                            var resp = request.responseText;
+                            console.log(resp);
+                        }
+                    };
+                    request.onerror = function (jqXHR, textStatus, errorThrown) {
+                        // There was a connection error of some sort
+                        console.log(jqXHR);
+                    };
+                    request.send(data);
+                }
+
+
+            </script>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include ../footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include ../common_footer.ejs %>
+</body>
+</html>

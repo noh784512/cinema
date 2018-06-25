@@ -1,0 +1,32 @@
+<div id="header">
+
+    <!-- Inner -->
+    <div class="inner">
+        <header>
+            <h1><a href="/admin/index" id="logo">영화는 CGV</a></h1>
+            <hr />
+            <p>즐거운 영화 세상 CGV</p>
+        </header>
+        <footer>
+        </footer>
+    </div>
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul>
+            <li><a href="/admin/index">관리자</a></li>
+            <li><a href="/admin/statistic">통계</a></li>
+            <li><a href="/admin/manage_movie">영화 관리</a></li>
+            <li><a href="/admin/manage_cinema">영화관 관리</a></li>
+            <li><a href="/admin/manage_showing">일정 관리</a></li>
+            <li><a href="/admin/manage_consulting">고객센터</a></li>
+            <li><a href="/admin/manage_notice">공지사항</a></li>
+            <% if(!session.is_admin){ %>
+            <li><a href="/admin/login">로그인</a></li>
+            <% }else {%>
+            <li><a href="/admin/logout">로그아웃</a></li>
+            <% }%>
+        </ul>
+    </nav>
+
+</div>

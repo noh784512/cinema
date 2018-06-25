@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Left Sidebar - Helios by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <% include common_import.ejs %>
+</head>
+<body class="left-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header.ejs %>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+            <div class="row 200%">
+                <div class="4u 12u(mobile)" id="sidebar">
+                    <hr class="first" />
+                    <section>
+                        <header>
+                        </header>
+                        <p>
+                            <img class="movie_left_img" src="/<%= movie_data.rows[0][5] %>">
+                        </p>
+                        <p> <strong>감독</strong> : <%= movie_data.rows[0][2] %> </p>
+                        <p> <strong>출연진</strong> : <%= movie_data.rows[0][3] %> </p>
+                        <p> <strong>배급사</strong> : <%= movie_data.rows[0][4] %> </p>
+                        <p> <strong>상영시간</strong> : <%= movie_data.rows[0][9] %> 분</p>
+                        <footer>
+                            <!--<a href="#" class="button">예매하기</a>-->
+                        </footer>
+                    </section>
+                    <!--<hr />-->
+                    <input type="hidden" name="movie_cd" value="<%= movie_data.rows[0][0]  %>">
+                </div>
+                <div class="8u 12u(mobile) important(mobile)" id="content">
+                    <article id="main">
+                        <header>
+                            <h2><a href="#"><%= movie_data.rows[0][1] %></a></h2>
+                        </header>
+                        <div class="movie_info_youtube">
+                            <%- movie_data.rows[0][6] %>
+                        </div>
+                        <section>
+                            <header>
+                                <h3>줄거리</h3>
+                            </header>
+                            <div id="container">
+                            <p>
+                                <%-movie_data.rows[0][7] %> <%-movie_data.rows[0][13] %> <%-movie_data.rows[0][14] %>
+                                <%-movie_data.rows[0][15] %> <%-movie_data.rows[0][16] %> <%-movie_data.rows[0][17] %>
+                            </p>
+                            </div>
+                            <h4>평점</h4>
+                            <% if(movie_data.rows[0][10]) 
+                            { 
+                                for(var i= 0, sum=0, len = movie_data.rows.length; i < len, item = movie_data.rows[i]; i++)
+                                {
+                                    sum+= movie_data.rows[i][10];
+                                }
+                                %>
+                                <h3><%=sum/movie_data.rows.length %></h3>
+                            <% 
+                            } 
+                            %>
+                            <div class="ui star rating" >
+                            </div>
+                            <% if (!session.id) {%>
+                            <form class="ui form" id="registration_review_form">
+                                <div class="field">
+                                    <div class="field">
+                                        <br><br>
+                                        <label>후기</label>
+                                        <input type="text" name="review_contents" placeholder="후기를 입력해주세요">
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="submit_btn" class="ui submit button">등록</div>
+                            <% } %>
+                            <input type="hidden" name="mem_id" value="<%= session.email %>">
+
+                            <br><br><br>
+                            <table class="ui celled table">
+                                    <h4>후기</h4>
+                                    <thead>
+                                    <tr>
+                                      <th>내용</th>
+                                      <th>작성자</th>
+                                    </tr></thead>
+                                    <tbody> 
+                                        <% if(movie_data.rows[0][11]){%>
+                                        <%
+                                            for(var i= 0, len = movie_data.rows.length; i < len, item = movie_data.rows[i]; i++){
+                                          %>
+                                          <tr>
+                                            <td id="review"><%=movie_data.rows[i][11]%></td>
+                                            <td id="mem_id"><%=movie_data.rows[i][12]%></td>
+                                            <% if(session.email==movie_data.rows[i][12]){ %>
+                                            <button class="ui secondary button update_review" movie_cd="<%= movie_data.rows[i][0] %>" mem_id="<%= movie_data.rows[i][12] %>">
+                                                    수정
+                                            </button>
+                                            <button class="ui secondary button delete_review" movie_cd="<%= movie_data.rows[i][0] %>" mem_id="<%= movie_data.rows[i][12] %>">
+                                                    삭제
+                                            </button>
+                                            <% } %>
+                                          </tr>
+                                          <%
+                                            }}
+                                          %>
+                                    </tbody>
+                                    <!--<tfoot>-->
+                                      <!--<tr><th colspan="3">-->
+                                        <!--<div class="ui right floated pagination menu">-->
+                                          <!--<a class="icon item">-->
+                                            <!--<i class="left chevron icon"></i>-->
+                                          <!--</a>-->
+                                          <!--<a class="item">1</a>-->
+                                          <!--<a class="item">2</a>-->
+                                          <!--<a class="item">3</a>-->
+                                          <!--<a class="item">4</a>-->
+                                          <!--<a class="icon item">-->
+                                            <!--<i class="right chevron icon"></i>-->
+                                          <!--</a>-->
+                                        <!--</div>-->
+                                      <!--</th>-->
+                                    <!--</tr></tfoot>-->
+                                  </table>
+                        </section>
+                    </article>
+                </div>
+            </div>
+
+            <script>
+                $('.ui.rating').rating({
+                initialRating: 0,
+                maxRating: 5 ,
+                clearable: true,
+                },);
+
+
+
+
+                $("#submit_btn").click(function(){
+                    // 폼 내용 업로드
+                    var send_json = get_form_data_to_json($("#registration_review_form"));
+                    send_json['review_grade'] =$('.ui.rating').rating('get rating');
+                    send_json['movie_cd']=$("input[name='movie_cd']").val();
+                    var answer_data = ajax_using_query( url = '/movie_info', _sendData = send_json ,
+                        _callback = function(){}, _isAsync = false);
+
+                    if(answer_data["status"] == OK){
+                        alert("성공!");
+                    }else{
+                        alert("에러 확인!");
+                        return;
+                    }
+                    location.replace('/movie_info'); 
+
+                });
+    
+            </script>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include common_footer.ejs %>
+
+</body>
+</html>

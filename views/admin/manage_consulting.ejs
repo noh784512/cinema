@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>1:1 문의</title>
+    <% include ../common_import.ejs %>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header_admin.ejs %>
+    
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+                <table class="ui celled table">
+                        <thead>
+                        <tr>
+                          <th>번호</th>
+                          <th>제목</th>
+                          <th>작성 날짜</th>
+                          <th>ID</th>
+                          <th> </th>
+                        </tr></thead>
+                        <tbody>
+                            <%
+                                for(var i= 0, len = result_arr.rows.length; i < len, item = result_arr.rows[i]; i++){
+                              %>
+                              <tr>
+                                <% 
+                                    if(i>0 && result_arr.rows[i][0]==result_arr.rows[i-1][0]){ 
+                                %>
+                                    <td id="result_cd"><%=result_arr.rows[i][0]%></td>
+                                    <td id="result_title">ㄴ<%=result_arr.rows[i-1][3]%>님 <%=result_arr.rows[i][1]%></td>
+                                    <td id="result_date"><%=result_arr.rows[i][2]%></td>
+                                    <td id="mem_id"><%=result_arr.rows[i][3]%></td>
+                                    <td>
+                                        /
+                                    </td>
+                                <% 
+                                    } 
+                                    else {
+                                %>
+                                    <td id="result_cd"><%=result_arr.rows[i][0]%></td>
+                                    <td id="result_title"><%=i%><%=result_arr.rows[i][1]%></td>
+                                    <td id="result_date"><%=result_arr.rows[i][2]%></td>
+                                    <td id="mem_id"><%=result_arr.rows[i][3]%></td>
+                                    <td>
+                                        <button class="ui blue basic button answer_btn" result_cd="<%= result_arr.rows[i][0] %>">
+                                                답변
+                                        </button>
+                                    </td>
+                                <%
+                                    }
+                                %>
+
+                              </tr>
+                              <%
+                                }
+                              %>
+                        </tbody>
+                        <!--<tfoot>-->
+                          <!--<tr><th colspan="5">-->
+                            <!--<div class="ui right floated pagination menu">-->
+                              <!--<a class="icon item">-->
+                                <!--<i class="left chevron icon"></i>-->
+                              <!--</a>-->
+                              <!--<a class="item">1</a>-->
+                              <!--<a class="item">2</a>-->
+                              <!--<a class="item">3</a>-->
+                              <!--<a class="item">4</a>-->
+                              <!--<a class="icon item">-->
+                                <!--<i class="right chevron icon"></i>-->
+                              <!--</a>-->
+                            <!--</div>-->
+                          <!--</th>-->
+                        <!--</tr></tfoot>-->
+                      </table>
+
+                      <script>
+                            $(".answer_btn").click(function(){
+                                location.href='answer_consulting?consulting_cd=' + $(this).attr("result_cd");
+                            });
+            
+                        </script>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include ../footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include ../common_footer.ejs %>
+</body>
+</html>

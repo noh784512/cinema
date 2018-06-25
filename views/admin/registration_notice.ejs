@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>공지사항 등록</title>
+    <% include ../common_import.ejs %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header_admin.ejs %>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+            <form class="ui form" id="registration_notice_form">
+                <h4 class="ui dividing header">공지사항 등록</h4>
+
+                <div class="field">
+                    <div class="field">
+                            <br>
+                            <label>제목</label>
+                            <input type="text" name="title" >
+                    </div>
+                    <label>내용</label>
+                    <div class="field">
+                        <!--<textarea name="synopsis"></textarea>-->
+
+                        <div id="summernote" editor="editor" on-image-upload="imageUpload(files)"></div>
+                        <br>
+                    </div>
+                </div>
+            </form>
+            <br>
+
+            <div id="submit_btn" class="ui submit button">Submit</div>
+            <script>
+
+                $("#submit_btn").click(function(){
+
+                    // 폼 내용 업로드
+                    var send_json = get_form_data_to_json($("#registration_notice_form"));
+                    send_json['contents'] = $('#summernote').summernote('code');
+
+                    var answer_data = ajax_using_query( url = '/admin/registration_notice', _sendData = send_json ,
+                        _callback = function(){}, _isAsync = false);
+
+                    if(answer_data["status"] == OK){
+                        alert("성공!");
+                    }else{
+                        alert("에러 확인!");
+                        return;
+                    }
+                    location.replace('/admin/manage_notice'); 
+
+
+                });
+
+
+
+                $('#summernote').summernote({
+                    lang: 'ko-KR',
+                    height: 500,
+                    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'clear']], ['fontname', ['fontname']], ['font', ['strikethrough', 'superscript', 'subscript']], ['fontsize', ['fontsize']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['height', ['height']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'hr']], ['view', ['fullscreen', 'codeview']], ['do', ['undo', 'redo']], ['help', ['help']]],
+                    codemirror: {
+                        lineNumbers: true,
+                        tabSize: 2,
+                        theme: "solarized light"
+                    },
+                    callbacks: {
+                        onImageUpload: function(files, editor, welEditable) {
+                            url = '/upload' //path is defined as data attribute for  textarea
+                            sendFile(files[0], url, $(this));
+                        }
+                    }
+                });
+
+
+                function sendFile(file, url, editor) {
+                    var data = new FormData();
+                    data.append("userfile", file);
+                    var request = new XMLHttpRequest();
+                    request.open('POST', url, true);
+                    request.onload = function () {
+                        if (request.status >= 200 && request.status < 400) {
+                            // Success!
+                            var resp = request.responseText;
+                            $(editor).summernote('insertImage', '/' + resp);
+                            console.log(resp);
+                        } else {
+                            // We reached our target server, but it returned an error
+                            var resp = request.responseText;
+                            console.log(resp);
+                        }
+                    };
+                    request.onerror = function (jqXHR, textStatus, errorThrown) {
+                        // There was a connection error of some sort
+                        console.log(jqXHR);
+                    };
+                    request.send(data);
+                }
+
+
+            </script>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include ../footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include ../common_footer.ejs %>
+</body>
+</html>

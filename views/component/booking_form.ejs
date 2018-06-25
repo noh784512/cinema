@@ -1,0 +1,1320 @@
+<style>
+    :root {
+        --app-bg: url(http://www.hdwallpaper.nu/wp-content/uploads/2016/02/california_wallpaper_20.jpg);
+    }
+
+    .booking-wrapper {
+        width: 1200px;
+        height: 700px;
+        margin: 10px auto;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+        box-shadow: 8px 10px 66px 1px rgba(0, 0, 0, 0.4);
+    }
+
+    .booking-wrapper .main-wrap {
+        position: relative;
+        background-color: #f8f8f8;
+        height: 100%;
+        width: calc(100% - 250px);
+        margin-left: 250px;
+        overflow: hidden;
+    }
+
+    .booking-wrapper .main {
+        display: flex;
+        width: calc(1900px + 100px);
+        height: 100%;
+    }
+
+
+    /*.ui select{*/
+        /*font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
+    /*}*/
+
+    .booking-wrapper .list,
+    .booking-wrapper .checkout {
+        position: relative;
+        width: calc(50% - 50px);
+    }
+
+    .booking-wrapper .page2 .list{
+        width: calc(600px - 50px);
+    }
+
+    .booking-wrapper header {
+        /*position: fixed;*/
+        background-color: #f8f8f8;
+        width: 534px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+    }
+
+    .booking-wrapper header ul li {
+        list-style: none;
+        float: left;
+        margin-right: 15px;
+        opacity: 0;
+        transform: translateX(-150px);
+        transition: all .2s ease-in;
+        color: #999;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    .booking-wrapper header ul li:hover,
+    .booking-wrapper header ul li.selected {
+        color: #795548;
+        font-weight: 600;
+    }
+
+    .booking-wrapper .content {
+        padding: 0 0 20px 25px;
+        margin-top: 0px;
+        position: relative;
+        transition: all .4s ease;
+    }
+
+    .booking-wrapper .content h3 {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .booking-wrapper ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .booking-wrapper ul.covers li {
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        vertical-align: top;
+        border: solid 1px rgba(0, 0, 0, 0.2);
+        padding: 5px;
+        border-radius: 2px;
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        width: 170px;
+        transform: translateY(100px);
+        opacity: 0;
+        position: relative;
+        top: 0;
+        transition: all .5s ease;
+    }
+
+    /*ul.covers li:hover {
+      transition-delay: 300ms !important;
+      box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
+      top: -5px;
+    }*/
+    .booking-wrapper ul.covers li > * {
+        display: block;
+    }
+
+    .booking-wrapper ul.covers li img {
+        height: 250px;
+        width: 170px;
+        background-color: #607D8B;
+        background-size: cover;
+        transition: all .8s ease;
+    }
+
+    .booking-wrapper ul.covers li span {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .booking-wrapper ul.covers li small {
+        color: #666;
+        font-size: 11px;
+    }
+
+    .booking-wrapper .checkout {
+        display: flex;
+        padding: 15px;
+        width: calc(50% - 50px);
+    }
+
+    .booking-wrapper .checkout .sinopsis {
+        width: 220px;
+    }
+
+    .booking-wrapper .checkout img.cover {
+        height: 320px;
+        width: 220px;
+        background-position: center;
+        background-size: cover;
+        display: -webkit-box;
+    }
+
+    .booking-wrapper .sinopsis h3,
+    .booking-wrapper .sinopsis p {
+        margin: 5px 0;
+    }
+
+    .booking-wrapper .sinopsis h3 {
+        color: #af8300;
+    }
+
+    .booking-wrapper .sinopsis p {
+        font-size: 14px;
+    }
+
+    .booking-wrapper .sinopsis small {
+        color: #999;
+    }
+
+    .booking-wrapper .checkout section {
+        padding-left: 15px;
+    }
+
+    .booking-wrapper .checkout .screen {
+        height: 30px;
+        background-color: #e1cfba;
+        font-size: 19px;
+        text-align: center;
+        margin-top: 6px;
+    }
+
+    .booking-wrapper .checkout .seats {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 30px;
+
+        padding: 10px 40px 30px 40px;
+    }
+
+    .booking-wrapper .checkout .seat {
+        margin: 2px;
+        padding: 3px;
+        background: #c3b1a3;
+        color: white;
+        border-radius: 2px;
+        width: 55px;
+        text-align: center;
+        cursor: pointer;
+        transition: all .4s ease;
+    }
+
+    .booking-wrapper .checkout .seat.aisle-right {
+        margin-right: 10px;
+    }
+
+    .booking-wrapper .checkout .seat.aisle-left {
+        margin-left: 10px;
+    }
+
+    .booking-wrapper .checkout .seat.aisle-top {
+        margin-top: 10px;
+    }
+
+    .booking-wrapper .checkout .total button {
+        border: none;
+        border-radius: 2px;
+        color: #fff;
+        background-color: #666;
+        width: 280px;
+        height: 32px;
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+        outline: none;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all .6s ease;
+    }
+
+    .booking-wrapper .checkout .total button.success {
+        background-color: #81b383;
+    }
+
+    .booking-wrapper .checkout .legend {
+        float: right;
+        text-align: right;
+        margin-right: 15px;
+    }
+
+    .booking-wrapper .checkout .legend li:after {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: #c3b1a3;
+        border-radius: 2px;
+        position: relative;
+        right: -5px;
+        top: 3px;
+    }
+
+    .booking-wrapper .checkout .seat.taken,
+    .booking-wrapper .checkout .legend li:last-child:after {
+        background-color: #666;
+    }
+
+    .booking-wrapper .checkout .seat.selected {
+        background-color: #b58300;
+    }
+
+    .booking-wrapper .checkout .total {
+        position: absolute;
+        bottom: 20px;
+        right: 17px;
+        text-align: right;
+    }
+
+    .booking-wrapper .checkout .total span {
+        font-size: 32px;
+        color: #af8300;
+        margin-left: 8px;
+    }
+
+    /***PAGE_TRANSITIONS***/
+    .booking-wrapper header.loaded ul li {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .booking-wrapper ul.covers.loaded li {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .booking-wrapper .main.page2 {
+        transform: translateX(-550px);
+    }
+
+    .booking-wrapper .checkout > * {
+        transition: all .8s ease;
+        opacity: 0;
+    }
+
+    .booking-wrapper .checkout .sinopsis {
+        transform: translateY(-600px);
+    }
+
+    .booking-wrapper .checkout section {
+        transform: translateX(300px);
+    }
+
+    .booking-wrapper .checkout .total {
+        transform: translateY(300px);
+    }
+
+    .booking-wrapper .page2 .checkout .sinopsis {
+        transform: translateX(0);
+        width: 2000px;
+        opacity: 1;
+        display : table;
+        overflow-y: auto;
+        width: -webkit-fill-available;
+    }
+
+    .booking-wrapper .page2 .checkout section {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .booking-wrapper .page2 .checkout .total {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /*.page2 .covers li {
+      transform: translateY(100px);
+      opacity: 0;
+    }*/
+    /*******/
+    .booking-wrapper .side {
+
+        padding: 15px;
+        position: relative;
+        background-color: rgba(229, 229, 229, 0.7);
+        float: left;
+        width: 250px;
+        height: 100%;
+    }
+
+    .booking-wrapper .side h3 {
+        /*font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
+        font-size: 32px;
+        margin: 15px 5px 0px;
+        color: #795548;
+        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .booking-wrapper .side > div,
+    .booking-wrapper .side > input {
+        margin: 5px 10px;
+    }
+
+    .booking-wrapper .side i:before {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    .booking-wrapper .search {
+        width: calc(100% - 35px);
+        padding: 8px 5px;
+        border: solid 2px #777;
+        outline: none;
+    }
+
+    .booking-wrapper ul.menu {
+        display: grid;
+        margin: 15px 0;
+    }
+
+    .booking-wrapper ul.menu li {
+        padding: 10px;
+        padding-left: 15px;
+        color: #444;
+        cursor: pointer;
+    }
+
+    .booking-wrapper ul.menu li:hover,
+    .booking-wrapper ul.menu li.selected {
+        border-left: #795548 solid 3px;
+        color: #795548;
+        font-weight: 500;
+        transition: all .1s ease;
+    }
+
+    .booking-wrapper ul.menu li:nth-child(7) {
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    }
+
+    .booking-wrapper .side div.bg {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: #af8300 no-repeat center center fixed;
+        background-image: var(--app-bg);
+        background-size: cover;
+        background-position: 0px 0px;
+        /**important + cover**/
+        filter: blur(5px);
+        padding: 0;
+        margin: 0;
+        z-index: -1;
+    }
+
+    .booking-wrapper .scroll {
+        /*width: 36px;*/
+        position: absolute;
+        right: 0;
+        top: 68px;
+        z-index: 10;
+    }
+
+    .booking-wrapper .scroll button {
+        border: none;
+        /*background-color: transparent;*/
+        outline: none;
+        display: block;
+        margin-bottom: 8px;
+        cursor: pointer;
+    }
+
+    .booking-wrapper .scroll button:first-child {
+        margin-bottom: 400px;
+    }
+
+    .booking-wrapper .scroll i {
+        font-size: 20px;
+        /*transform: rotate(90deg);*/
+        color: black;
+    }
+
+    .booking-wrapper .scroll button:hover i {
+        color: #666;
+        font-weight: 500;
+    }
+
+    .booking-wrapper button.back {
+        border: none;
+        /*background-color: transparent;*/
+        outline: none;
+        margin-bottom: 8px;
+        cursor: pointer;
+    }
+
+    .booking-wrapper button.back i {
+        font-size: 24px;
+        color: #666;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(1) {
+        transition-delay: 950ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(2) {
+        transition-delay: 900ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(3) {
+        transition-delay: 850ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(4) {
+        transition-delay: 800ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(5) {
+        transition-delay: 750ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(6) {
+        transition-delay: 700ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(7) {
+        transition-delay: 650ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(8) {
+        transition-delay: 600ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(9) {
+        transition-delay: 550ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(10) {
+        transition-delay: 500ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(11) {
+        transition-delay: 450ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(12) {
+        transition-delay: 400ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(13) {
+        transition-delay: 350ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(14) {
+        transition-delay: 300ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(15) {
+        transition-delay: 250ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(16) {
+        transition-delay: 200ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(17) {
+        transition-delay: 150ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(18) {
+        transition-delay: 100ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(19) {
+        transition-delay: 50ms;
+    }
+
+    .booking-wrapper .covers.up li:nth-child(20) {
+        transition-delay: 0ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(1) {
+        transition-delay: 50ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(2) {
+        transition-delay: 100ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(3) {
+        transition-delay: 150ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(4) {
+        transition-delay: 200ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(5) {
+        transition-delay: 250ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(6) {
+        transition-delay: 300ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(7) {
+        transition-delay: 350ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(8) {
+        transition-delay: 400ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(9) {
+        transition-delay: 450ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(10) {
+        transition-delay: 500ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(11) {
+        transition-delay: 550ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(12) {
+        transition-delay: 600ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(13) {
+        transition-delay: 650ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(14) {
+        transition-delay: 700ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(15) {
+        transition-delay: 750ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(16) {
+        transition-delay: 800ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(17) {
+        transition-delay: 850ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(18) {
+        transition-delay: 900ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(19) {
+        transition-delay: 950ms;
+    }
+
+    .booking-wrapper .covers li:nth-child(20) {
+        transition-delay: 1000ms;
+    }
+
+    .booking-wrapper header li:nth-child(6) {
+        transition-delay: 50ms;
+    }
+
+    .booking-wrapper header li:nth-child(5) {
+        transition-delay: 100ms;
+    }
+
+    .booking-wrapper header li:nth-child(4) {
+        transition-delay: 150ms;
+    }
+
+    .booking-wrapper header li:nth-child(3) {
+        transition-delay: 200ms;
+    }
+
+    .booking-wrapper header li:nth-child(2) {
+        transition-delay: 250ms;
+    }
+
+    .booking-wrapper header li:nth-child(1) {
+        transition-delay: 300ms;
+    }
+
+    /** Loader **/
+    .booking-wrapper .loader,
+    .booking-wrapper .loader:before,
+    .booking-wrapper .loader:after {
+        border-radius: 50%;
+        width: 1.8em;
+        height: 1.8em;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation: load7 1.8s infinite ease-in-out;
+        animation: load7 1.8s infinite ease-in-out;
+    }
+
+    .booking-wrapper .loader {
+        display: none;
+        color: #666;
+        font-size: 10px;
+        margin: 5px auto;
+        position: relative;
+        text-indent: -9999em;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+        position: relative;
+        top: -15px;
+    }
+
+    .booking-wrapper .loader:before,
+    .booking-wrapper .loader:after {
+        content: '';
+        position: absolute;
+        top: 0;
+    }
+
+    .booking-wrapper .loader:before {
+        left: -3.5em;
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+    }
+
+    .booking-wrapper .loader:after {
+        left: 3.5em;
+    }
+
+    .booking-wrapper @-webkit-keyframes load7 {
+                         0%,
+                         80%,
+                         100% {
+                             box-shadow: 0 2.5em 0 -1.3em;
+                         }
+                         40% {
+                             box-shadow: 0 2.5em 0 0;
+                         }
+                     }
+    .booking-wrapper @keyframes load7 {
+                         0%,
+                         80%,
+                         100% {
+                             box-shadow: 0 2.5em 0 -1.3em;
+                         }
+                         40% {
+                             box-shadow: 0 2.5em 0 0;
+                         }
+                     }
+
+</style>
+
+<div class="booking-wrapper">
+    <div class="side">
+        <!--<div class="bg"></div>-->
+        <div>
+            <h3>CGV</h3>
+        </div>
+        <br>
+
+        <form id="showing_condition" class="ui form">
+            <div class="field">
+                <label>영화관 선택</label>
+                <select id="cinema_list" name="cinema_list" class="ui dropdown">
+                    <option value="">영화관 선택</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>날짜</label>
+                <div class="field">
+                    <div class="field">
+                        <input name="showing_date" type="date" class="input" id="showing_date">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="main-wrap">
+        <div class="main">
+            <div class="list">
+                <div class="scroll">
+                    <button class="scrollTop"><i class="arrow circle up icon"></i></button>
+                    <button class="scrollDown"><i class="arrow circle down icon"></i></button>
+                </div>
+                <header>
+                    <ul class="filter">
+                        <li data-gid="," class="selected">전체 장르</li>
+                        <li data-gid="1">액션</li>
+                        <li data-gid="2">어드벤처</li>
+                        <li data-gid="3">코미디</li>
+                        <li data-gid="4">드라마</li>
+                    </ul>
+                </header>
+                <div class="content">
+                    <ul class="covers"></ul>
+                </div>
+            </div>
+            <div class="checkout">
+                <div class="sinopsis">
+                    <button class="back">
+                        <i class="arrow circle left icon"></i>
+                    </button>
+                    <img class="cover" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8zw8AAhMBENYXhyAAAAAASUVORK5CYII=" style="background-image: url(http://cgv.co19.kr/20180520-065430-27920171208163304_21.png)">
+                    <h3>Wonder Woman</h3>
+                    <p>An Amazon princess comes to the world of Man to become the greatest of the female superheroes.</p>
+                    <span>Wed, 28 Jun </span><br>
+                    <small>16:00 (2h 15m)</small>
+                </div>
+                <section>
+                    <ul class="legend">
+                        <li>예약가능</li>
+                        <li>예약됨</li>
+                    </ul>
+                    <span>좌석을 선택하세요</span>
+                    <div class="seats"></div>
+                    <div class="screen">screen</div>
+                    <br>
+
+                    <form class="ui form" id="seat_form">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>어린이</label>
+                                <select id="child_num" name="child_num" class="ui dropdown ticketing_people">
+                                    <option value=0>0</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                    <option value=6>6</option>
+                                    <option value=7>7</option>
+                                    <option value=8>8</option>
+                                    <option value=9>9</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>청소년</label>
+                                <select id="teenage_num" name="teenage_num" class="ui dropdown ticketing_people">
+                                    <option value=0>0</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                    <option value=6>6</option>
+                                    <option value=7>7</option>
+                                    <option value=8>8</option>
+                                    <option value=9>9</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>일반</label>
+                                <select id="adult_num" name="adult_num" class="ui dropdown ticketing_people">
+                                    <option value=0>0</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                    <option value=6>6</option>
+                                    <option value=7>7</option>
+                                    <option value=8>8</option>
+                                    <option value=9>9</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <br>
+                <div class="total">
+                    <span class="seat_num">0</span> 좌석 선택 <span class="payment">  </span>
+                    <button id="card_pay">카드 결제</button>
+                    <button id="bank_pay">무통장 입금</button>
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="card_modal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        카드 결제
+    </div>
+    <div class="image content">
+        <form class="ui form" id="card_form">
+            <div class="two field">
+                <div class="field">
+                    <label>기본 가격</label>
+                    <input name="basic_price" type="number" class="input" id="basic_price" readonly>
+                </div>
+                <div class="field">
+                    <label>적용 가능한 포인트 : <span class="span_point"></span></label>
+                    <input name="point" type="number" class="input" id="point" value="0" min="0" max="0">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>은행</label>
+                <select id="card_list" name="card_list" class="ui dropdown">
+
+                </select>
+            </div>
+
+
+            <div class="field">
+                <label>총 가격</label>
+                <input name="total_price" type="number" class="input" id="total_price" readonly>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            취소
+        </div>
+        <div id="card_pay_btn" class="ui positive right labeled icon button">
+            결제
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+
+
+<div id="bank_modal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        계좌이체
+    </div>
+    <div class="image content">
+        <form class="ui form" id="bank_form">
+            <div class="two field">
+                <div class="field">
+                    <label>기본 가격</label>
+                    <input name="basic_price" type="number" class="input" id="basic_price" readonly>
+                </div>
+
+                <div class="field">
+                    <label>적용 가능한 포인트 : <span class="span_point"></span></label>
+                    <input name="point" type="number" class="input" id="point" value="0">
+                </div>
+            </div>
+
+            <div class="field">
+                <label>은행</label>
+                <select id="bank_list" name="bank_list" class="ui dropdown">
+
+                </select>
+            </div>
+
+            <div class="field">
+                <label>총 가격</label>
+                <input name="total_price" type="number" class="input" id="total_price" readonly>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            취소
+        </div>
+        <div id="bank_pay_btn" class="ui positive right labeled icon button">
+            결제
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" name="mem_id" value="<%= session.email %>">
+<input type="hidden" name="is_member" value="<%= session.is_member %>">
+
+<!-- my script -->
+<script>
+    // 날짜 초기화
+    document.getElementById('showing_date').valueAsDate = new Date();
+
+    // 시네마 추가
+    var send_json = {};
+    var answer_data = ajax_using_query( url = '/cinema_search', _sendData = send_json ,
+        _callback = function(){}, _isAsync = false , _type = 'post');
+
+    $('#cinema_list').html("");
+    for ( var i = 0 ; i < answer_data.rows.length ; i++){
+
+        $('#cinema_list').append($('<option>', {
+            value: answer_data.rows[i][0],
+            text : answer_data.rows[i][1]
+        }));
+    }
+
+    // 변화 감지
+    $( "#cinema_list" ).change(function() {
+        doMoviesRender(',');
+    });
+
+
+    // 변화 감지
+    $( "#showing_date" ).change(function() {
+        doMoviesRender(',');
+    });
+
+
+</script>
+
+<script>
+    // press f11 to full page view
+    // vote for me at https://www.uplabs.com/posts/fluent-movie-booking
+
+    tooglePage1();
+
+    function tooglePage1() {
+        $('.covers').removeClass('up');
+        setTimeout(function () {
+            return $('.main header').toggleClass('loaded');
+        }, 50);
+        setTimeout(function () {
+            return $('.covers').toggleClass('loaded');
+        }, 600);
+    }
+
+    var $covers = $('.covers');
+    var scroll = 0;
+    var delta = 267;
+
+    function doScroll() {
+        var scrollUp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+        var listHeight = getComputedStyle(document.querySelector('ul.covers')).getPropertyValue('height');
+
+        if (!scrollUp && scroll < parseInt(listHeight) - delta * 2) {
+            scroll += delta;
+            $covers.removeClass('up').find('li').css('transform', 'translateY(-' + scroll + 'px)');
+        }
+
+        if (scrollUp && scroll >= delta) {
+            scroll -= delta;
+            $covers.addClass('up').find('li').css('transform', 'translateY(-' + scroll + 'px)');
+        }
+    }
+
+    $('button.scrollDown').on('click', function (evt) {
+        return doScroll();
+    });
+    $('button.scrollTop').on('click', function (evt) {
+        return doScroll(true);
+    });
+
+    $('button.back').on('click', function (evt) {
+        $('.main').toggleClass('page2');
+        $('.total button').removeClass('success');
+        tooglePage1();
+    });
+
+    $('.covers').on('click', 'li', function (evt) {
+        var data = getData();
+        var index = evt.currentTarget.getAttribute('data-index');
+        var movie = data.results[parseInt(index)];
+        var txt = movie.overview.length >= 220 ? movie.overview.substring(0, 220).concat('...') : movie.overview;
+
+        var $sinopsis = $('.sinopsis');
+        $sinopsis.find('h3').text(movie.title);
+        $sinopsis.find('p').text("상영 시작 시간 : " + movie.starting_time);
+        $sinopsis.find('span').text("총 상영 시간 : " + movie.run_time);
+        $sinopsis.find('small').text("상영 날자 : " + movie.showing_date);
+        $sinopsis.find('img').attr('src', '/' + movie.poster_path);
+        $sinopsis.attr('screening_cd', movie.screening_cd);
+        $sinopsis.attr('theater_cd', movie.theater_cd);
+
+        $('.main').toggleClass('page2');
+        tooglePage1();
+
+
+        // 좌석 초기화 !!
+        var seats = [];
+        var _seat_info = seat_info[ (movie.theater_seat_type > 0) ? movie.theater_seat_type : 0 ];
+        _seat_info = (_seat_info == undefined || _seat_info == null) ? seat_info[0] : _seat_info;
+        seats.push(_seat_info);
+
+        $('.seats').html(seats.join(''));
+
+        // 자리 아이디 세팅
+        var send_json = {};
+        send_json['theater_cd'] = $('.sinopsis').attr('theater_cd');
+
+        var seat_arr = ajax_using_query( url = '/get_seat_list', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false , _type = 'post');
+
+        for ( var i = 0 ; i < seat_arr.rows.length ; i++){
+            var seat_posi = seat_arr.rows[i][1] + seat_arr.rows[i][2];
+            $("#" + seat_posi).attr("seat_cd", seat_arr.rows[i][0]);
+        }
+
+        // 예약된 좌석 세팅
+        var send_json = {};
+        send_json['screening_cd'] = $('.sinopsis').attr('screening_cd');
+
+        var reserved_seat_arr = ajax_using_query( url = '/get_reserved_seat_list', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false , _type = 'post');
+
+        for ( var i = 0 ; i < reserved_seat_arr.rows.length ; i++){
+            $("[seat_cd="+ reserved_seat_arr.rows[i][1] +"]").addClass('taken');
+        }
+
+
+
+    });
+
+    // https://image.tmdb.org/t/p/w300/w93GAiq860UjmgR6tU9h2T24vaV.jpg
+    function doMoviesRender(filter) {
+        var movies = getData().results;
+        var moviesRender = movies.map(function (item, index) {
+            var title = item.title,
+                genre_ids = item.genre_ids,
+                poster_path = item.poster_path,
+                overview = item.overview;
+
+            var uri = '/' + poster_path;
+            var gid = genre_ids.toString();
+
+            return gid.indexOf(filter) < 0 ? '' : '\n\t\t\t<li data-index="' + index + '" theater_cd="'+ item.theater_cd +'">\n\t\t\t\t<img src="' + uri +
+                '"style="background-image: url(' + uri + ')">\n\t\t\t\t<span>' + title +
+                '</span><small>'+ item.starting_time + ' ('+item.run_time+ '분)</small><span>'+ item.showing_date +'</span>\n\t\t\t</li>\n\t\t';
+        });
+
+        $('.covers').html(moviesRender.join(''));
+
+
+    }
+
+    doMoviesRender(',');
+
+
+    $('.seats').on('click', '.seat', function (evt) {
+        var $seat = $(evt.currentTarget);
+
+        if (!$seat.hasClass('taken')) {
+            $seat.toggleClass('selected');
+            var $sel = $(".seats").find('.selected');
+            var qty = $sel.length;
+            $('.total .seat_num').text(qty);
+        }
+    });
+
+    $('.filter li').on('click', function (evt) {
+        $(evt.currentTarget).addClass('selected').siblings().removeClass('selected');
+        var $covers = $('.covers').removeClass('loaded').removeClass('up');
+        var filter = evt.currentTarget.getAttribute('data-gid');
+        doMoviesRender(filter);
+        scroll = 0;
+        setTimeout(function () {
+            return $covers.toggleClass('loaded');
+        }, 100);
+
+    });
+
+//    $('.total button').on('click', function (evt) {
+//        var $button = $(evt.currentTarget);
+//        var total = $('.total span').text();
+
+//        if (!$button.hasClass('success') && total !== '$0') {
+//            var $loader = $('.loader').show();
+//            $button.text('Booking...');
+
+//            setTimeout(function () {
+//                $loader.hide();
+//                $button.html('<i class="zmdi zmdi-check-circle"></i> Movie Booked');
+//                $button.addClass('success');
+//            }, 1600);
+//        }
+//    });
+
+    function getData(){
+        var send_json = get_form_data_to_json($("#showing_condition"));
+        var movie_arr = ajax_using_query( url = '/get_movie_list', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false , _type = 'post');
+        movie_arr = movie_arr.rows;
+        var result_arr = [];
+
+        for ( var i = 0 ; i < movie_arr.length ; i++){
+            result_arr.push(
+                { "vote_count": 1724, "id": movie_arr[i][0], "video": true, "vote_average": 0, "title": movie_arr[i][1], "popularity": 0,
+                    "poster_path": movie_arr[i][5], "original_language": "en", "original_title": movie_arr[i][1], "genre_ids": [,],
+                    "backdrop_path": "/hA5oCgvgCxj5MEWcLpjXXTwEANF.jpg", "adult": false, "overview":movie_arr[i][7],
+                    "release_date":movie_arr[i][6],  "run_time": movie_arr[i][7], "starting_time" : movie_arr[i][8], "showing_date": movie_arr[i][6],
+                    "theater_cd" : movie_arr[i][9], "screening_cd": movie_arr[i][10], "theater_seat_type" : movie_arr[i][11]}
+            );
+
+            var genre_arr = ajax_using_query( url = '/get_movie_genre', _sendData = {"movie_cd" : result_arr[i]['id'] } ,
+                _callback = function(){}, _isAsync = false , _type = 'post');
+
+            for ( var k = 0 ; k < genre_arr.length; k++)
+                result_arr[i]['genre_ids'].push(genre_arr[k][0]);
+
+
+        };
+
+        return { "page": 1, "total_results": 315519, "total_pages": 15776, "results": result_arr};
+    }
+
+    /*** END OF CODE ***/
+
+    function is_same_seat_and_people(){
+        var seat_num = $(".seats").find('.selected').length;
+        var child_num = $('select[name=child_num]').val();
+        var teenage_num = $('select[name=teenage_num]').val();
+        var adult_num = $('select[name=adult_num]').val();
+
+        var total_people = Number(child_num) + Number(teenage_num) + Number(adult_num);
+
+        if (seat_num == total_people) return true;
+        else false;
+    }
+
+    $('.ticketing_people').change(function(){
+        get_total_payment();
+    });
+
+    get_total_payment();
+
+    function get_total_payment(){
+        var child_num = $('select[name=child_num]').val();
+        var teenage_num = $('select[name=teenage_num]').val();
+        var adult_num = $('select[name=adult_num]').val();
+        $('.payment').text(child_num*6000 + teenage_num*8000 + adult_num*10000 + "원 ("+ child_num + "/"+ teenage_num + "/"+ adult_num + ")");
+        return child_num*6000 + teenage_num*8000 + adult_num*10000;
+    }
+
+    $('#card_pay').click(function(){
+        if ( ! is_same_seat_and_people() ){
+            alert('지정한 좌석과 인원수가 다릅니다');
+            return;
+        }
+        $("#card_modal").modal('show');
+        $("input[name=basic_price]").val(get_total_payment());
+        
+        if($("input[name='is_member']").val())
+        {
+            $("input[name=total_price]").val( $("input[name=basic_price]").val() - $("input[name=point]").val() );
+        }
+        else
+        {
+            $("input[name=total_price]").val(get_total_payment());
+        }
+
+        var answer_data = ajax_using_query( url = '/get_card', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false , _type = 'post');
+
+        $('#card_list').html("");
+        for ( var i = 0 ; i < answer_data.rows.length ; i++){
+
+            $('#card_list').append($('<option>', {
+                value: answer_data.rows[i][1],
+                text : answer_data.rows[i][0]
+            }));
+        }
+        
+        if($("input[name='is_member']").val())
+        {
+            var answer_data = ajax_using_query( url = '/get_point', _sendData = {'mem_id' : $("input[name='mem_id']").val() },
+            _callback = function(){}, _isAsync = false , _type = 'post');
+            $("input[name='point']").attr("max", answer_data['point']);
+            $(".span_point").html(answer_data['point']);
+        }
+        
+    });
+
+    $('#bank_pay').click(function(){
+        if ( ! is_same_seat_and_people() ) {
+            alert('지정한 좌석과 인원수가 다릅니다');
+            return;
+        }
+        $("#bank_modal").modal('show');
+        $("input[name=basic_price]").val(get_total_payment());
+
+        //회원일 경우
+        if($("input[name='is_member']").val())
+        {
+            $("input[name=total_price]").val( $("input[name=basic_price]").val() - $("input[name=point]").val() );
+        }
+        else
+        {
+            $("input[name=total_price]").val(get_total_payment());
+        }
+
+
+
+        var answer_data = ajax_using_query( url = '/get_bank', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false , _type = 'post');
+
+        $('#bank_list').html("");
+        for ( var i = 0 ; i < answer_data.rows.length ; i++){
+
+            $('#bank_list').append($('<option>', {
+                value: answer_data.rows[i][0],
+                text : answer_data.rows[i][0] + ' ( ' + answer_data.rows[i][1] + ' / ' + answer_data.rows[i][2] + ' )'
+            }));
+        }
+
+        if($("input[name='is_member']").val())
+        {
+            var answer_data = ajax_using_query( url = '/get_point', _sendData = {'mem_id' : $("input[name='mem_id']").val() },
+            _callback = function(){}, _isAsync = false , _type = 'post');
+            $("input[name='point']").attr("max", answer_data['point']);
+            $(".span_point").html(answer_data['point']);
+        }
+    });
+
+
+    $('#bank_pay_btn').click(function(){
+        // 폼 내용 업로드
+        var send_json1 = get_form_data_to_json($("#bank_form"));
+        var send_json2 = get_form_data_to_json($("#seat_form"));
+
+        var send_json = $.extend({}, send_json1, send_json2);
+        send_json['screening_cd'] = $('.sinopsis').attr('screening_cd');
+        send_json['picked_seat_cd_arr'] = get_picked_seat_cd();
+
+        var answer = ajax_using_query( url = '/pay_for_card', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false , _type = 'post');
+    });
+
+    $('#card_pay_btn').click(function(){
+        var send_json1 = get_form_data_to_json($("#card_form"));
+        var send_json2 = get_form_data_to_json($("#seat_form"));
+
+        var send_json = $.extend({}, send_json1, send_json2);
+        send_json['screening_cd'] = $('.sinopsis').attr('screening_cd');
+        send_json['picked_seat_cd_arr'] = get_picked_seat_cd();
+
+        var answer = ajax_using_query( url = '/pay_for_card', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false , _type = 'post');
+
+    });
+
+    if($("input[name='is_member']").val())
+    {
+        $('#card_form input[name="point"]').change(function(){
+        $("#card_form input[name=basic_price]").val(get_total_payment());
+        $("#card_form input[name=total_price]").val( $("#card_form input[name=basic_price]").val() - $("#card_form input[name=point]").val() );
+        });
+
+        $('#bank_form input[name="point"]').change(function(){
+            $("#bank_form input[name=basic_price]").val(get_total_payment());
+            $("#bank_form input[name=total_price]").val( $("#bank_form input[name=basic_price]").val() - $("#bank_form input[name=point]").val() );
+        });
+
+    }
+
+
+
+
+    function get_picked_seat_cd(){
+        var picked_seat = [];
+        for ( var i = 0 ; i < $(".seats").find('.selected').length; i++){
+            picked_seat.push($(".seats").find('.selected').eq(i).attr("seat_cd"));
+        }
+        return picked_seat;
+    }
+
+
+</script>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>영화 관리</title>
+    <% include ../common_import.ejs %>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header_admin.ejs %>
+    
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+                <table class="ui celled table">
+                        <thead>
+                            <button class="ui primary basic button" id="create_btn">
+                                    등록
+                            </button>
+                        <tr>
+                          <th>영화 번호</th>
+                          <th>영화 제목</th>
+                          <th>이미지</th>
+                          <th>상영시간</th>
+                          <th>관람등급</th>
+                          <th>수정 / 삭제</th>
+                        </tr></thead>
+                        <tbody>
+                            <%
+                                for(var i= 0, len = movie_arr.rows.length; i < len, item = movie_arr.rows[i]; i++){
+                              %>
+                              <tr>
+                                <td id="movie_cd"><%=movie_arr.rows[i][0]%></td>
+                                <td id="movie_title"><%=movie_arr.rows[i][1]%></td>
+                                <td id="image_url"><img class="movie_left_img" src="/<%= movie_arr.rows[i][2]  %>" style="width: 120px; height: auto;"  alt="" /></td>
+                                <td id="running_time"><%=movie_arr.rows[i][3]%></td>
+                                <td id="film_rate"><%=movie_arr.rows[i][4]%></td>
+                                <td>
+                                    <button class="ui primary basic button update_btn" movie_cd="<%= movie_arr.rows[i][0] %>">
+                                            수정
+                                    </button>
+                                    /
+                                    <button class="ui primary negative basic button delete_btn" movie_cd="<%= movie_arr.rows[i][0] %>">
+                                            삭제
+                                    </button>
+                                </td>
+
+                              </tr>
+                              <%
+                                }
+                              %>
+                        </tbody>
+                        <!--<tfoot>-->
+                          <!--<tr><th colspan="6">-->
+                            <!--<div class="ui right floated pagination menu">-->
+                              <!--<a class="icon item">-->
+                                <!--<i class="left chevron icon"></i>-->
+                              <!--</a>-->
+                              <!--<a class="item">1</a>-->
+                              <!--<a class="item">2</a>-->
+                              <!--<a class="item">3</a>-->
+                              <!--<a class="item">4</a>-->
+                              <!--<a class="icon item">-->
+                                <!--<i class="right chevron icon"></i>-->
+                              <!--</a>-->
+                            <!--</div>-->
+                          <!--</th>-->
+                        <!--</tr></tfoot>-->
+                      </table>
+
+                      <script>
+                            $("#create_btn").click(function(){
+                               location.href='registration_movie';
+                            });
+                            $(".update_btn").click(function(){
+                                location.href='update_movie?movie_cd=' + $(this).attr("movie_cd");
+                            });
+                            $(".delete_btn").click(function(){
+                                var result = confirm('정말 삭제하시겠습니까?'); 
+                                if(result) { //yes 
+                                    
+                                    var send_json = { "movie_cd" :  $(this).attr("movie_cd") };
+
+                                    var answer_data = ajax_using_query( url = '/admin/delete_movie', _sendData = send_json ,
+                                        _callback = function(){}, _isAsync = false);
+
+                                    if(answer_data["status"] == OK){
+                                        alert("성공!");
+                                    }else{
+                                        alert("에러 확인!");
+                                        return;
+                                    }
+                                    alert("삭제되었습니다");
+                                    location.replace('/admin/manage_movie'); 
+                                }
+                                else 
+                                    { //no 
+                                    }
+                            });
+            
+                        </script>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include ../footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include ../common_footer.ejs %>
+</body>
+</html>

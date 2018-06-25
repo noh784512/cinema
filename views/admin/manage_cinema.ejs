@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>영화관 관리</title>
+    <% include ../common_import.ejs %>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header_admin.ejs %>
+    
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+                <table class="ui celled table">
+                        <thead>
+                            <button class="ui primary basic button" id="create_btn">
+                                    등록
+                            </button>
+                        <tr>
+                          <th>영화관 번호</th>
+                          <th>영화관 이름</th>
+                          <th>영화관 정보</th>
+                          <th>주차장 정보</th>
+                          <th>전화번호</th>
+                          <th>수정 / 삭제 / 상영관 추가</th>
+                        </tr></thead>
+                        <tbody>
+                            <%
+                                for(var i= 0, len = cinema_arr.rows.length; i < len, item = cinema_arr.rows[i]; i++){
+                              %>
+                              <tr>
+                                <td id="cinema_cd"><%=cinema_arr.rows[i][0]%></td>
+                                <td id="cinema_name"><a href="cinema?cinema_cd=<%=cinema_arr.rows[i][0]%>"><%=cinema_arr.rows[i][1]%></a></td>
+                                <td id="cinema_location"><%=cinema_arr.rows[i][2]%></td>
+                                <td id="parking_info"><%=cinema_arr.rows[i][3]%></td>
+                                <td id="cinema_phone"><%=cinema_arr.rows[i][4]%></td>
+                                <td>
+                                    <button class="ui primary basic button update_btn" cinema_cd="<%= cinema_arr.rows[i][0] %>">
+                                            수정
+                                    </button>
+                                    /
+                                    <button class="ui negative basic button delete_btn" cinema_cd="<%= cinema_arr.rows[i][0] %>">
+                                            삭제
+                                    </button>
+                                    /
+                                    <button class="ui green basic button add_theater_btn" cinema_cd="<%= cinema_arr.rows[i][0] %>">
+                                            상영관 추가
+                                    </button>
+                                </td>
+
+                              </tr>
+                              <%
+                                }
+                              %>
+                        </tbody>
+                        <!--<tfoot>-->
+                          <!--<tr><th colspan="6">-->
+                            <!--<div class="ui right floated pagination menu">-->
+                              <!--<a class="icon item">-->
+                                <!--<i class="left chevron icon"></i>-->
+                              <!--</a>-->
+                              <!--<a class="item">1</a>-->
+                              <!--<a class="item">2</a>-->
+                              <!--<a class="item">3</a>-->
+                              <!--<a class="item">4</a>-->
+                              <!--<a class="icon item">-->
+                                <!--<i class="right chevron icon"></i>-->
+                              <!--</a>-->
+                            <!--</div>-->
+                          <!--</th>-->
+                        <!--</tr></tfoot>-->
+                      </table>
+
+                      <script>
+                            $("#create_btn").click(function(){
+                               location.href='registration_cinema';
+                            });
+                            $(".update_btn").click(function(){
+                                location.href='update_cinema?cinema_cd=' + $(this).attr("cinema_cd");
+                            });
+                            $(".delete_btn").click(function(){
+                                var result = confirm('정말 삭제하시겠습니까?'); 
+                                if(result) { //yes 
+                                    
+                                    var send_json = { "cinema_cd" :  $(this).attr("cinema_cd") };
+
+                                    var answer_data = ajax_using_query( url = '/admin/delete_cinema', _sendData = send_json ,
+                                        _callback = function(){}, _isAsync = false);
+
+                                    if(answer_data["status"] == OK){
+                                        alert("성공!");
+                                    }else{
+                                        alert("에러 확인!");
+                                        return;
+                                    }
+                                    alert("삭제되었습니다");
+                                    location.replace('/admin/manage_cinema'); 
+                                }
+                                else 
+                                    { //no 
+                                    }
+                            });
+                            $(".add_theater_btn").click(function(){
+                                var no=$(this).attr("cinema_cd");
+                                   location.replace('registration_theater?cinema_cd='+no);
+                            });
+                        </script>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include ../footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include ../common_footer.ejs %>
+</body>
+</html>

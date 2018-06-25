@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>영화관 등록</title>
+    <% include ../common_import.ejs %>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header_admin.ejs %>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+            <form class="ui form" id="registration_cinema_form">
+                <h4 class="ui dividing header">영화관 등록</h4>
+
+                <div class="field">
+                    <div class="field">
+                        <label>영화관 이름</label>
+                        <input type="text" name="cinema_name" placeholder="이름을 입력해주세요">
+                    </div>
+                    <div class="field">
+                        <label>영화관 주소</label>
+                        <input type="text" name="cinema_location" placeholder="주소를 입력해주세요">
+                    </div>
+                    <div class="field">
+                        <label>주차장 정보</label>
+                        <input type="text" name="parking_info" placeholder="주차장 정보를 입력해주세요">
+                    </div>
+                    <div class="field">
+                        <label>전화번호</label>
+                        <input type="text" name="cinema_phone" placeholder="전화번호를 입력해주세요">
+                    </div>
+
+                </div>
+            </form>
+
+            <div id="submit_btn" class="ui submit button">Submit</div>
+            <script>
+
+                $("#submit_btn").click(function(){
+                    // 폼 내용 업로드
+                    var send_json = get_form_data_to_json($("#registration_cinema_form"));
+                    var answer_data = ajax_using_query( url = '/admin/registration_cinema', _sendData = send_json ,
+                        _callback = function(){}, _isAsync = false);
+
+                    if(answer_data["status"] == OK){
+                        alert("성공!");
+                    }else{
+                        alert("에러 확인!");
+                        return;
+                    }
+                    location.replace('/admin/manage_cinema'); 
+
+                });
+
+            </script>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include ../footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include ../common_footer.ejs %>
+</body>
+</html>

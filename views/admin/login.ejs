@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>No Sidebar - Helios by HTML5 UP</title>
+    <% include ../common_import.ejs %>
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include ./header_admin.ejs %>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+            <% include ../component/signup_form_admin.ejs %>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include ../footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include ../common_footer.ejs %>
+
+<script>
+
+    $("#login_btn").click(function(){
+
+        // 폼 내용 업로드
+        var send_json = get_form_data_to_json($("#login_form"));
+
+        var answer_data = ajax_using_query( url = '/admin/login', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false);
+
+        if(answer_data["status"] == OK){
+            alert("로그인 되었습니다");
+        }else{
+            alert("로그인에 실패했습니다");
+            return;
+        }
+        location.replace('/admin');
+
+    });
+
+
+    $("#sign_up_btn").click(function(){
+
+        // 폼 내용 업로드
+        var send_json = get_form_data_to_json($("#sign_up_form"));
+
+        var answer_data = ajax_using_query( url = '/admin/sign-up', _sendData = send_json ,
+            _callback = function(){}, _isAsync = false);
+
+        if(answer_data["status"] == OK){
+            alert("회원가입 되었습니다");
+        }else{
+            alert("회원가입에 실패했습니다");
+            return;
+        }
+        location.replace('/admin');
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>영화 관리</title>
+    <% include common_import.ejs %>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header.ejs %>
+    
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+                <table class="ui celled table">
+                        <h4>예매 내역</h4>
+                        <thead>
+                        <tr>
+                          <th>예매번호</th>
+                          <th>영화 제목</th>
+                          <th>영화관</th>
+                          <th>상영관</th>
+                          <th>날짜</th>
+                          <th>좌석</th>
+                          <th>환불 여부</th> 
+                          <th>예매 취소</th>
+                        </tr></thead>
+                        <tbody>
+                            <%
+                                for(var i= 0, len = ticket_arr.rows.length; i < len, item = ticket_arr.rows[i]; i++){
+                              %>
+                              <tr>
+                                <td id="ticket_cd"><%=ticket_arr.rows[i][0]%></td>
+                                <td id="movie_name"><%=ticket_arr.rows[i][1]%></td>
+                                <td id="cinema_name"><%= ticket_arr.rows[i][2] %></td>
+                                <td id="theater_name"><%= ticket_arr.rows[i][3] %></td>
+                                <td id="starting_time"><%= ticket_arr.rows[i][4] %></td>
+                                <td id="seat"><%=ticket_arr.rows[i][5]%><%=ticket_arr.rows[i][6]%></td>
+                                <% if(!ticket_arr.rows[i][7]) {%>
+                                <td id="refund_date">x</td>
+                                <td>
+                                        <button class="ui orange basic button cancel_booking" ticket_cd="<%= ticket_arr.rows[i][0] %>">
+                                                예매 취소
+                                        </button>
+                                </td>
+                                <% }else{ %>
+                                <td id="refund_date"><%= ticket_arr.rows[i][7] %></td>
+                                <% } %>
+                              </tr>
+                              <%
+                                }
+                              %>
+                        </tbody>
+                        <!--<tfoot>-->
+                          <!--<tr><th colspan="8">-->
+                            <!--<div class="ui right floated pagination menu">-->
+                              <!--<a class="icon item">-->
+                                <!--<i class="left chevron icon"></i>-->
+                              <!--</a>-->
+                              <!--<a class="item">1</a>-->
+                              <!--<a class="item">2</a>-->
+                              <!--<a class="item">3</a>-->
+                              <!--<a class="item">4</a>-->
+                              <!--<a class="icon item">-->
+                                <!--<i class="right chevron icon"></i>-->
+                              <!--</a>-->
+                            <!--</div>-->
+                          <!--</th>-->
+                        <!--</tr></tfoot>-->
+                      </table>
+                      <script>
+                            $(".cancel_booking").click(function(){
+                                var result = confirm('정말 삭제하시겠습니까?'); 
+                                if(result) { //yes 
+                                    
+                                    var send_json = { "ticket_cd" :  $(this).attr("ticket_cd") };
+
+                                    var answer_data = ajax_using_query( url = '/booking_list', _sendData = send_json ,
+                                        _callback = function(){}, _isAsync = false);
+
+                                    if(answer_data["status"] == OK){
+                                        alert("성공!");
+                                    }else{
+                                        alert("에러 확인!");
+                                        return;
+                                    }
+                                    alert("삭제되었습니다");
+                                    location.replace('/booking_list'); 
+                                }
+                                else 
+                                    { //no 
+                                    }
+                            });
+            
+                        </script>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include common_footer.ejs %>
+</body>
+</html>

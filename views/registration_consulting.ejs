@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<!--
+	Helios by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>영화 등록</title>
+    <% include common_import.ejs %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+
+</head>
+<body class="no-sidebar">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <% include header.ejs %>
+
+    <!-- Main -->
+    <div class="wrapper style1">
+
+        <div class="container">
+
+            <form class="ui form" id="consulting_form">
+                <h4 class="ui dividing header">1:1 문의</h4>                
+                <div class="field">
+                    <br>
+                    <small>* 답변은 등록된 email로 드리겠습니다.</small>
+                    <div class="field">
+                        <br>
+                        <label>제목</label>
+                        <input type="text" name="title" >
+                    </div>
+                    <label>내용</label>
+                    <div class="field">
+                        <!--<textarea name="synopsis"></textarea>-->
+
+                        <div id="summernote" editor="editor" on-image-upload="imageUpload(files)"></div>
+                        <br>
+                    </div>
+                </div>
+            </form>
+            <div id="submit_btn" class="ui submit button" >Submit</div>
+
+            <script>
+
+                $("#submit_btn").click(function(){
+
+                    // 폼 내용 업로드
+                    var send_json = get_form_data_to_json($("#consulting_form"));
+
+                    send_json['contents'] = $('#summernote').summernote('code');
+
+                    var answer_data = ajax_using_query( url = '/registration_consulting', _sendData = send_json ,
+                        _callback = function(){}, _isAsync = false);
+
+                    if(answer_data["status"] == OK){
+                        alert("문의가 접수되었습니다.");
+                    }else{
+                        alert("에러 확인!");
+                        return;
+                    }
+                    location.replace('/consulting_list');
+
+                });
+
+                $('#summernote').summernote({
+                    lang: 'ko-KR',
+                    height: 500,
+                    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'clear']], ['fontname', ['fontname']], ['font', ['strikethrough', 'superscript', 'subscript']], ['fontsize', ['fontsize']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['height', ['height']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'hr']], ['view', ['fullscreen', 'codeview']], ['do', ['undo', 'redo']], ['help', ['help']]],
+                    codemirror: {
+                        lineNumbers: true,
+                        tabSize: 2,
+                        theme: "solarized light"
+                    },
+                    callbacks: {
+                    }
+                });
+                </script>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <% include footer.ejs %>
+
+</div>
+
+<!-- Scripts -->
+<% include common_footer.ejs %>
+</body>
+</html>
